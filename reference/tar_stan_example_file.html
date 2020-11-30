@@ -157,8 +157,22 @@ Stan model file.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='fu'>tar_stan_example_file</span><span class='op'>(</span>path <span class='op'>=</span> <span class='va'>path</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in system.file("example.stan", package = "stantargets", mustWork = TRUE): no file found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSODm7j/file16491e3739da': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in file(con, "r"): cannot open the connection</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; data {
+#&gt;   int &lt;lower = 1&gt; n;
+#&gt;   vector[n] x;
+#&gt;   vector[n] y;
+#&gt; }
+#&gt; parameters {
+#&gt;   real beta;
+#&gt; }
+#&gt; model {
+#&gt;   y ~ normal(x * beta, 1);
+#&gt;   beta ~ normal(0, 1);
+#&gt; }
+#&gt; generated quantities {
+#&gt;   real y_rep[n] = normal_rng(x * beta, 1);
+#&gt; }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
