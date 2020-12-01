@@ -18,15 +18,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Targets for Stan Workflows">
-<meta property="og:description" content="The targets package is a pipeline toolkit that brings together
-  function-oriented programming and Make-like declarative workflows for
-  Statistics and data science in R. The stantargets package provides
-  convenient user-side functions to create Bayesian data analysis
-  workflows with targets and Stan. These functions reduce
-  cognitive overhead and micromanagement so the user can focus
-  more on model development than software development.
-  stantargets invokes Stan through the cmdstanr package:
-  &lt;https://mc-stan.org/cmdstanr&gt;.">
+<meta property="og:description" content="The stantargets R package is an extension to
+  targets and cmdstanr for Bayesian data analysis.
+  stantargets makes it super easy to set up useful scalable
+  Stan pipelines that automatically parallelize the computation
+  and skip expensive steps when the results are already up to date.
+  Minimal custom code is required, and there is no need to manually
+  configure branching, so usage is much easier than targets alone.
+  stantargets can access all of cmdstanr's major algorithms
+  (MCMC, variational Bayes, and optimization) and it supports
+  both single-fit workflows and multi-rep simulation studies.">
 <meta property="og:image" content="/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -98,7 +99,7 @@
 <a href="#stantargets-" class="anchor"></a>stantargets <img src="reference/figures/logo.png" align="right" height="139">
 </h1></div>
 
-<p>The <code>targets</code> package is a pipeline toolkit that brings together function-oriented programming and Make-like declarative workflows for Statistics and data science in R. The <code>stantargets</code> package provides convenient user-side functions to create Bayesian data analysis workflows with <code>targets</code> and Stan. These functions streamline the implementation so users can focus on model development instead of software development. <code>stantargets</code> invokes Stan through the <code>cmdstanr</code> package: <a href="https://mc-stan.org/cmdstanr" class="uri">https://mc-stan.org/cmdstanr</a>.</p>
+<p>The <code>stantargets</code> R package is an extension to <a href="https://github.com/wlandau/targets"><code>targets</code></a> and <a href="https://github.com/stan-dev/cmdstanr"><code>cmdstanr</code></a> for Bayesian data analysis. <code>stantargets</code> makes it super easy to set up useful scalable Stan pipelines that automatically parallelize the computation and skip expensive steps when the results are already up to date. Minimal custom code is required, and there is no need to manually configure branching, so usage is much easier than <a href="https://github.com/wlandau/targets"><code>targets</code></a> alone. <code>stantargets</code> can access all of <a href="https://github.com/stan-dev/cmdstanr"><code>cmdstanr</code></a>’s major algorithms (MCMC, variational Bayes, and optimization) and it supports both single-fit workflows and multi-rep simulation studies.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
