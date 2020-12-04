@@ -148,8 +148,8 @@ model {
 <p>We now have a pipeline that runs the model 10 times: 5 batches (branch targets) with 2 replications per batch.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-e06c33f0b367dd9f6f96" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e06c33f0b367dd9f6f96">{"x":{"nodes":{"name":["model","model_batch","model_data","model_file_model","model_model"],"type":["stem","stem","pattern","stem","pattern"],"status":["outdated","outdated","outdated","outdated","outdated"],"seconds":[null,null,null,null,null],"bytes":[null,null,null,null,null],"branches":[null,null,null,null,null],"id":["model","model_batch","model_data","model_file_model","model_model"],"label":["model","model_batch","model_data","model_file_model","model_model"],"font.size":[20,20,20,20,20],"level":[4,1,2,1,3],"color":["#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6"],"shape":["dot","dot","square","dot","square"]},"edges":{"from":["model_batch","model_data","model_file_model","model_model"],"to":["model_data","model_model","model_model","model"],"arrows":["to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Stem","Pattern"],"color":["#5BBCD6","#899DA4","#899DA4"],"shape":["dot","dot","square"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>Run the computation with <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code></p>
+<div id="htmlwidget-50464e21644a94a5285b" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-50464e21644a94a5285b">{"x":{"nodes":{"name":["model","model_batch","model_data","model_file_model","model_model"],"type":["stem","stem","pattern","stem","pattern"],"status":["outdated","outdated","outdated","outdated","outdated"],"seconds":[null,null,null,null,null],"bytes":[null,null,null,null,null],"branches":[null,null,null,null,null],"id":["model","model_batch","model_data","model_file_model","model_model"],"label":["model","model_batch","model_data","model_file_model","model_model"],"font.size":[20,20,20,20,20],"level":[4,1,2,1,3],"color":["#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6"],"shape":["dot","dot","square","dot","square"]},"edges":{"from":["model_batch","model_data","model_file_model","model_model"],"to":["model_data","model_model","model_model","model"],"arrows":["to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Stem","Pattern"],"color":["#5BBCD6","#899DA4","#899DA4"],"shape":["dot","dot","square"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>Run the computation with <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ● run target model_batch</span>
@@ -171,7 +171,7 @@ model {
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All 4 chains finished successfully.</span>
 <span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.9 seconds.</span>
+<span class="co">#&gt; Total execution time: 1.0 seconds.</span>
 <span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
@@ -181,7 +181,7 @@ model {
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All 4 chains finished successfully.</span>
 <span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
+<span class="co">#&gt; Total execution time: 0.8 seconds.</span>
 <span class="co">#&gt; ● run branch model_model_a9336683</span>
 <span class="co">#&gt; Model executable is up to date!</span>
 <span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
@@ -193,7 +193,7 @@ model {
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All 4 chains finished successfully.</span>
 <span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.9 seconds.</span>
+<span class="co">#&gt; Total execution time: 0.8 seconds.</span>
 <span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
@@ -203,7 +203,7 @@ model {
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All 4 chains finished successfully.</span>
 <span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.6 seconds.</span>
+<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
 <span class="co">#&gt; ● run branch model_model_bde6a6d6</span>
 <span class="co">#&gt; Model executable is up to date!</span>
 <span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
@@ -215,7 +215,7 @@ model {
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All 4 chains finished successfully.</span>
 <span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
+<span class="co">#&gt; Total execution time: 0.8 seconds.</span>
 <span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
@@ -225,7 +225,7 @@ model {
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All 4 chains finished successfully.</span>
 <span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.8 seconds.</span>
+<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
 <span class="co">#&gt; ● run branch model_model_384f982f</span>
 <span class="co">#&gt; Model executable is up to date!</span>
 <span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
@@ -277,26 +277,26 @@ model {
 <span class="co">#&gt; # A tibble: 20 x 7</span>
 <span class="co">#&gt;    variable          q2.5     q50  q97.5 .rep             .file      .name</span>
 <span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1 beta            -0.325  0.519   1.38  rep_19886e1c443e model.stan model</span>
-<span class="co">#&gt;  2 true_beta_value  0.768  0.768   0.768 rep_19886e1c443e model.stan model</span>
-<span class="co">#&gt;  3 beta            -0.480  0.362   1.20  rep_19882b1545bd model.stan model</span>
-<span class="co">#&gt;  4 true_beta_value  0.491  0.491   0.491 rep_19882b1545bd model.stan model</span>
-<span class="co">#&gt;  5 beta             0.410  1.24    2.09  rep_1988334c2ae8 model.stan model</span>
-<span class="co">#&gt;  6 true_beta_value  0.631  0.631   0.631 rep_1988334c2ae8 model.stan model</span>
-<span class="co">#&gt;  7 beta            -0.824  0.0498  0.931 rep_19887bb8d96f model.stan model</span>
-<span class="co">#&gt;  8 true_beta_value -0.139 -0.139  -0.139 rep_19887bb8d96f model.stan model</span>
-<span class="co">#&gt;  9 beta            -0.282  0.566   1.47  rep_1988550d84a3 model.stan model</span>
-<span class="co">#&gt; 10 true_beta_value  0.875  0.875   0.875 rep_1988550d84a3 model.stan model</span>
-<span class="co">#&gt; 11 beta            -0.927 -0.0350  0.835 rep_198825aecfac model.stan model</span>
-<span class="co">#&gt; 12 true_beta_value  0.557  0.557   0.557 rep_198825aecfac model.stan model</span>
-<span class="co">#&gt; 13 beta             0.317  1.19    2.09  rep_19886c320f27 model.stan model</span>
-<span class="co">#&gt; 14 true_beta_value  1.50   1.50    1.50  rep_19886c320f27 model.stan model</span>
-<span class="co">#&gt; 15 beta             1.73   2.59    3.46  rep_198850652224 model.stan model</span>
-<span class="co">#&gt; 16 true_beta_value  2.15   2.15    2.15  rep_198850652224 model.stan model</span>
-<span class="co">#&gt; 17 beta            -1.65  -0.741   0.179 rep_1988508cd24e model.stan model</span>
-<span class="co">#&gt; 18 true_beta_value -0.679 -0.679  -0.679 rep_1988508cd24e model.stan model</span>
-<span class="co">#&gt; 19 beta            -0.424  0.495   1.41  rep_19882026835e model.stan model</span>
-<span class="co">#&gt; 20 true_beta_value  0.987  0.987   0.987 rep_19882026835e model.stan model</span></code></pre></div>
+<span class="co">#&gt;  1 beta            -0.325  0.519   1.38  rep_18b83c995062 model.stan model</span>
+<span class="co">#&gt;  2 true_beta_value  0.768  0.768   0.768 rep_18b83c995062 model.stan model</span>
+<span class="co">#&gt;  3 beta            -0.480  0.362   1.20  rep_18b81486a526 model.stan model</span>
+<span class="co">#&gt;  4 true_beta_value  0.491  0.491   0.491 rep_18b81486a526 model.stan model</span>
+<span class="co">#&gt;  5 beta             0.410  1.24    2.09  rep_18b84f6eb722 model.stan model</span>
+<span class="co">#&gt;  6 true_beta_value  0.631  0.631   0.631 rep_18b84f6eb722 model.stan model</span>
+<span class="co">#&gt;  7 beta            -0.824  0.0498  0.931 rep_18b828ee559b model.stan model</span>
+<span class="co">#&gt;  8 true_beta_value -0.139 -0.139  -0.139 rep_18b828ee559b model.stan model</span>
+<span class="co">#&gt;  9 beta            -0.282  0.566   1.47  rep_18b86dea73b9 model.stan model</span>
+<span class="co">#&gt; 10 true_beta_value  0.875  0.875   0.875 rep_18b86dea73b9 model.stan model</span>
+<span class="co">#&gt; 11 beta            -0.927 -0.0350  0.835 rep_18b83ee845bc model.stan model</span>
+<span class="co">#&gt; 12 true_beta_value  0.557  0.557   0.557 rep_18b83ee845bc model.stan model</span>
+<span class="co">#&gt; 13 beta             0.317  1.19    2.09  rep_18b881a3ced  model.stan model</span>
+<span class="co">#&gt; 14 true_beta_value  1.50   1.50    1.50  rep_18b881a3ced  model.stan model</span>
+<span class="co">#&gt; 15 beta             1.73   2.59    3.46  rep_18b82c923083 model.stan model</span>
+<span class="co">#&gt; 16 true_beta_value  2.15   2.15    2.15  rep_18b82c923083 model.stan model</span>
+<span class="co">#&gt; 17 beta            -1.65  -0.741   0.179 rep_18b8f906f29  model.stan model</span>
+<span class="co">#&gt; 18 true_beta_value -0.679 -0.679  -0.679 rep_18b8f906f29  model.stan model</span>
+<span class="co">#&gt; 19 beta            -0.424  0.495   1.41  rep_18b8214b76fd model.stan model</span>
+<span class="co">#&gt; 20 true_beta_value  0.987  0.987   0.987 rep_18b8214b76fd model.stan model</span></code></pre></div>
 <p>We can read all the branches at once into a larger data frame.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_load.html">tar_load</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>
@@ -304,26 +304,26 @@ model {
 <span class="co">#&gt; # A tibble: 20 x 7</span>
 <span class="co">#&gt;    variable          q2.5     q50  q97.5 .rep             .file      .name</span>
 <span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1 beta            -0.325  0.519   1.38  rep_19886e1c443e model.stan model</span>
-<span class="co">#&gt;  2 true_beta_value  0.768  0.768   0.768 rep_19886e1c443e model.stan model</span>
-<span class="co">#&gt;  3 beta            -0.480  0.362   1.20  rep_19882b1545bd model.stan model</span>
-<span class="co">#&gt;  4 true_beta_value  0.491  0.491   0.491 rep_19882b1545bd model.stan model</span>
-<span class="co">#&gt;  5 beta             0.410  1.24    2.09  rep_1988334c2ae8 model.stan model</span>
-<span class="co">#&gt;  6 true_beta_value  0.631  0.631   0.631 rep_1988334c2ae8 model.stan model</span>
-<span class="co">#&gt;  7 beta            -0.824  0.0498  0.931 rep_19887bb8d96f model.stan model</span>
-<span class="co">#&gt;  8 true_beta_value -0.139 -0.139  -0.139 rep_19887bb8d96f model.stan model</span>
-<span class="co">#&gt;  9 beta            -0.282  0.566   1.47  rep_1988550d84a3 model.stan model</span>
-<span class="co">#&gt; 10 true_beta_value  0.875  0.875   0.875 rep_1988550d84a3 model.stan model</span>
-<span class="co">#&gt; 11 beta            -0.927 -0.0350  0.835 rep_198825aecfac model.stan model</span>
-<span class="co">#&gt; 12 true_beta_value  0.557  0.557   0.557 rep_198825aecfac model.stan model</span>
-<span class="co">#&gt; 13 beta             0.317  1.19    2.09  rep_19886c320f27 model.stan model</span>
-<span class="co">#&gt; 14 true_beta_value  1.50   1.50    1.50  rep_19886c320f27 model.stan model</span>
-<span class="co">#&gt; 15 beta             1.73   2.59    3.46  rep_198850652224 model.stan model</span>
-<span class="co">#&gt; 16 true_beta_value  2.15   2.15    2.15  rep_198850652224 model.stan model</span>
-<span class="co">#&gt; 17 beta            -1.65  -0.741   0.179 rep_1988508cd24e model.stan model</span>
-<span class="co">#&gt; 18 true_beta_value -0.679 -0.679  -0.679 rep_1988508cd24e model.stan model</span>
-<span class="co">#&gt; 19 beta            -0.424  0.495   1.41  rep_19882026835e model.stan model</span>
-<span class="co">#&gt; 20 true_beta_value  0.987  0.987   0.987 rep_19882026835e model.stan model</span></code></pre></div>
+<span class="co">#&gt;  1 beta            -0.325  0.519   1.38  rep_18b83c995062 model.stan model</span>
+<span class="co">#&gt;  2 true_beta_value  0.768  0.768   0.768 rep_18b83c995062 model.stan model</span>
+<span class="co">#&gt;  3 beta            -0.480  0.362   1.20  rep_18b81486a526 model.stan model</span>
+<span class="co">#&gt;  4 true_beta_value  0.491  0.491   0.491 rep_18b81486a526 model.stan model</span>
+<span class="co">#&gt;  5 beta             0.410  1.24    2.09  rep_18b84f6eb722 model.stan model</span>
+<span class="co">#&gt;  6 true_beta_value  0.631  0.631   0.631 rep_18b84f6eb722 model.stan model</span>
+<span class="co">#&gt;  7 beta            -0.824  0.0498  0.931 rep_18b828ee559b model.stan model</span>
+<span class="co">#&gt;  8 true_beta_value -0.139 -0.139  -0.139 rep_18b828ee559b model.stan model</span>
+<span class="co">#&gt;  9 beta            -0.282  0.566   1.47  rep_18b86dea73b9 model.stan model</span>
+<span class="co">#&gt; 10 true_beta_value  0.875  0.875   0.875 rep_18b86dea73b9 model.stan model</span>
+<span class="co">#&gt; 11 beta            -0.927 -0.0350  0.835 rep_18b83ee845bc model.stan model</span>
+<span class="co">#&gt; 12 true_beta_value  0.557  0.557   0.557 rep_18b83ee845bc model.stan model</span>
+<span class="co">#&gt; 13 beta             0.317  1.19    2.09  rep_18b881a3ced  model.stan model</span>
+<span class="co">#&gt; 14 true_beta_value  1.50   1.50    1.50  rep_18b881a3ced  model.stan model</span>
+<span class="co">#&gt; 15 beta             1.73   2.59    3.46  rep_18b82c923083 model.stan model</span>
+<span class="co">#&gt; 16 true_beta_value  2.15   2.15    2.15  rep_18b82c923083 model.stan model</span>
+<span class="co">#&gt; 17 beta            -1.65  -0.741   0.179 rep_18b8f906f29  model.stan model</span>
+<span class="co">#&gt; 18 true_beta_value -0.679 -0.679  -0.679 rep_18b8f906f29  model.stan model</span>
+<span class="co">#&gt; 19 beta            -0.424  0.495   1.41  rep_18b8214b76fd model.stan model</span>
+<span class="co">#&gt; 20 true_beta_value  0.987  0.987   0.987 rep_18b8214b76fd model.stan model</span></code></pre></div>
 <p>Now, let’s assess how often the estimated 95% credible intervals capture the true values of <code>beta</code>. If the model is implemented correctly, the coverage value below should be close to 95%. (Ordinarily, we would <a href="https://wlandau.github.io/targets-manual/dynamic.html#batching">increase the number of batches and reps per batch</a> and <a href="https://wlandau.github.io/targets-manual/hpc.html">run batches in parallel computing</a>.)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
@@ -386,8 +386,8 @@ model {
 <p>The new <code>coverage</code> target should the only outdated target, and it should be connected to the upstream <code>model</code> target.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-29bab6b50e098292a7e5" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-29bab6b50e098292a7e5">{"x":{"nodes":{"name":["model","model_batch","model_data","model_file_model","model_model","coverage"],"type":["stem","stem","pattern","stem","pattern","stem"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","outdated"],"seconds":[0.001,0.001,0.004,13.217,11.179,null],"bytes":[2127,96,1554,229,5030,null],"branches":[null,null,5,null,5,null],"id":["model","model_batch","model_data","model_file_model","model_model","coverage"],"label":["model","model_batch","model_data","model_file_model","model_model","coverage"],"font.size":[20,20,20,20,20,20],"level":[4,1,2,1,3,5],"color":["#0B775E","#0B775E","#0B775E","#0B775E","#0B775E","#5BBCD6"],"shape":["dot","dot","square","dot","square","dot"]},"edges":{"from":["model_batch","model","model_data","model_file_model","model_model"],"to":["model_data","coverage","model_model","model_model","model"],"arrows":["to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem","Pattern"],"color":["#0B775E","#5BBCD6","#899DA4","#899DA4"],"shape":["dot","dot","dot","square"],"font.size":[20,20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>When we run the pipeline, only the coverage assessment should run. That way, we skip all the expensive computation of simulating datasets and running MCMC multiple times.</p>
+<div id="htmlwidget-66be0292c05eec5dd1e4" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-66be0292c05eec5dd1e4">{"x":{"nodes":{"name":["model","model_batch","model_data","model_file_model","model_model","coverage"],"type":["stem","stem","pattern","stem","pattern","stem"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","outdated"],"seconds":[0,0,0.004,13.603,11.628,null],"bytes":[2119,96,1554,229,5026,null],"branches":[null,null,5,null,5,null],"id":["model","model_batch","model_data","model_file_model","model_model","coverage"],"label":["model","model_batch","model_data","model_file_model","model_model","coverage"],"font.size":[20,20,20,20,20,20],"level":[4,1,2,1,3,5],"color":["#0B775E","#0B775E","#0B775E","#0B775E","#0B775E","#5BBCD6"],"shape":["dot","dot","square","dot","square","dot"]},"edges":{"from":["model_batch","model","model_data","model_file_model","model_model"],"to":["model_data","coverage","model_model","model_model","model"],"arrows":["to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem","Pattern"],"color":["#0B775E","#5BBCD6","#899DA4","#899DA4"],"shape":["dot","dot","dot","square"],"font.size":[20,20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>When we run the pipeline, only the coverage assessment should run. That way, we skip all the expensive computation of simulating datasets and running MCMC multiple times.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ✔ skip target model_batch</span>
@@ -458,8 +458,8 @@ model {
 <p>In the graph below, notice how targets <code>model_model1</code> and <code>model_model2</code> are both connected to <code>model_data</code> upstream. Downstream, <code>model</code> is equivalent to <code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows(model_model1, model_model2)</a></code>, and it will have special columns <code>.name</code> and <code>.file</code> to distinguish among all the models.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-24a53916d2c02782d969" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-24a53916d2c02782d969">{"x":{"nodes":{"name":["coverage","model","model_batch","model_data","model_file_model","model_model","model_file_model2","model_model2"],"type":["stem","stem","stem","pattern","stem","pattern","stem","pattern"],"status":["outdated","outdated","uptodate","uptodate","uptodate","uptodate","outdated","outdated"],"seconds":[0.176,0.001,0.001,0.004,13.217,11.179,null,null],"bytes":[140,2127,96,1554,229,5030,null,null],"branches":[null,null,null,5,null,5,null,null],"id":["coverage","model","model_batch","model_data","model_file_model","model_model","model_file_model2","model_model2"],"label":["coverage","model","model_batch","model_data","model_file_model","model_model","model_file_model2","model_model2"],"font.size":[20,20,20,20,20,20,20,20],"level":[5,4,1,2,1,3,1,3],"color":["#5BBCD6","#5BBCD6","#0B775E","#0B775E","#0B775E","#0B775E","#5BBCD6","#5BBCD6"],"shape":["dot","dot","dot","square","dot","square","dot","square"]},"edges":{"from":["model_data","model_file_model2","model_data","model_file_model","model_model","model_model2","model_batch","model"],"to":["model_model2","model_model2","model_model","model_model","model","model","model_data","coverage"],"arrows":["to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Up to date","Stem","Pattern"],"color":["#5BBCD6","#0B775E","#899DA4","#899DA4"],"shape":["dot","dot","dot","square"],"font.size":[20,20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-93e1470bca4bdf31ac63" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-93e1470bca4bdf31ac63">{"x":{"nodes":{"name":["coverage","model","model_batch","model_data","model_file_model","model_model","model_file_model2","model_model2"],"type":["stem","stem","stem","pattern","stem","pattern","stem","pattern"],"status":["outdated","outdated","uptodate","uptodate","uptodate","uptodate","outdated","outdated"],"seconds":[0.182,0,0,0.004,13.603,11.628,null,null],"bytes":[140,2119,96,1554,229,5026,null,null],"branches":[null,null,null,5,null,5,null,null],"id":["coverage","model","model_batch","model_data","model_file_model","model_model","model_file_model2","model_model2"],"label":["coverage","model","model_batch","model_data","model_file_model","model_model","model_file_model2","model_model2"],"font.size":[20,20,20,20,20,20,20,20],"level":[5,4,1,2,1,3,1,3],"color":["#5BBCD6","#5BBCD6","#0B775E","#0B775E","#0B775E","#0B775E","#5BBCD6","#5BBCD6"],"shape":["dot","dot","dot","square","dot","square","dot","square"]},"edges":{"from":["model_data","model_file_model2","model_data","model_file_model","model_model","model_model2","model_batch","model"],"to":["model_model2","model_model2","model_model","model_model","model","model","model_data","coverage"],"arrows":["to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Up to date","Stem","Pattern"],"color":["#5BBCD6","#0B775E","#899DA4","#899DA4"],"shape":["dot","dot","dot","square"],"font.size":[20,20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
