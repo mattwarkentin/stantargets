@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compile and run a Stan model and return a CmdStanMLE object. — tar_stan_mle_run • stantargets</title>
+<title>Compile and run a Stan model and return the CmdStanFit object. — tar_stan_gq_run • stantargets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Compile and run a Stan model and return a CmdStanMLE object. — tar_stan_mle_run" />
+<meta property="og:title" content="Compile and run a Stan model and return the CmdStanFit object. — tar_stan_gq_run" />
 <meta property="og:description" content="Not a user-side function. Do not invoke directly." />
 <meta property="og:image" content="/logo.svg" />
 
@@ -128,18 +128,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compile and run a Stan model and return a <code>CmdStanMLE</code> object.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_mle.R'><code>R/tar_stan_mle.R</code></a></small>
-    <div class="hidden name"><code>tar_stan_mle_run.Rd</code></div>
+    <h1>Compile and run a Stan model and return the <code>CmdStanFit</code> object.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_gq.R'><code>R/tar_stan_gq.R</code></a></small>
+    <div class="hidden name"><code>tar_stan_gq_run.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Not a user-side function. Do not invoke directly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_stan_mle_run</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>tar_stan_gq_run</span><span class='op'>(</span>
   <span class='va'>stan_file</span>,
   <span class='va'>data</span>,
+  <span class='va'>fitted_params</span>,
   <span class='va'>compile</span>,
   <span class='va'>quiet</span>,
   <span class='va'>dir</span>,
@@ -148,14 +149,10 @@
   <span class='va'>stanc_options</span>,
   <span class='va'>force_recompile</span>,
   <span class='va'>seed</span>,
-  <span class='va'>refresh</span>,
-  <span class='va'>init</span>,
-  <span class='va'>save_latent_dynamics</span>,
   <span class='va'>output_dir</span>,
-  <span class='va'>algorithm</span>,
-  <span class='va'>init_alpha</span>,
-  <span class='va'>iter</span>,
   <span class='va'>sig_figs</span>,
+  <span class='va'>parallel_chains</span>,
+  <span class='va'>threads_per_chain</span>,
   <span class='va'>variables</span>
 <span class='op'>)</span></pre>
 
@@ -164,12 +161,16 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>stan_file</th>
-      <td><p>Character, Stan model file or the lines of the file,
-depending on <code>compile</code>.</p></td>
+      <td><p>Character, Stan model file.</p></td>
     </tr>
     <tr>
       <th>data</th>
       <td><p>List of data to pass to the Stan model.</p></td>
+    </tr>
+    <tr>
+      <th>fitted_params</th>
+      <td><p>An existing <code>CmdStanMCMC</code> with all draws loaded
+into memory.</p></td>
     </tr>
     <tr>
       <th>compile</th>
@@ -188,45 +189,30 @@ every time the main target reruns.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p><code>seed</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>refresh</th>
-      <td><p><code>refresh</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>init</th>
-      <td><p><code>init</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>save_latent_dynamics</th>
-      <td><p><code>save_latent_dynamics</code>
-argument to <code>$optimize()</code>.</p></td>
+      <td><p><code>seed</code> argument to <code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p><code>output_dir</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>algorithm</th>
-      <td><p><code>algorithm</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>init_alpha</th>
-      <td><p><code>init_alpha</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>iter</th>
-      <td><p><code>iter</code> argument to <code>$optimize()</code>.</p></td>
+      <td><p><code>output_dir</code> argument to <code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>sig_figs</th>
-      <td><p><code>sig_figs</code> argument to <code>$optimize()</code>.</p></td>
+      <td><p><code>sig_figs</code> argument to <code>$generate_quantities()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>parallel_chains</th>
+      <td><p><code>parallel_chains</code> argument to
+<code>$generate_quantities()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>threads_per_chain</th>
+      <td><p><code>threads_per_chain</code> argument to
+<code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>variables</th>
       <td><p><code>variables</code> argument to <code>$draws()</code> and <code>$summary()</code>
-on the <code>CmdStanMLE</code> object.</p></td>
+on the <code>CmdStanGQ</code> object.</p></td>
     </tr>
     </table>
 

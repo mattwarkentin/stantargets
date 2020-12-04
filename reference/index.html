@@ -224,31 +224,56 @@
         <td>
           <p><code><a href="tar_stan_mcmc.html">tar_stan_mcmc()</a></code> </p>
         </td>
-        <td><p>One MCMC with multiple outputs.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tar_stan_mcmc_gq.html">tar_stan_mcmc_gq()</a></code> </p>
-        </td>
-        <td><p>Generated quantities on an existing MCMC object</p></td>
+        <td><p>One MCMC per model with multiple outputs.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_mcmc_rep_diagnostics.html">tar_stan_mcmc_rep_diagnostics()</a></code> </p>
         </td>
-        <td><p>Multiple MCMCs with sampler diagnostics.</p></td>
+        <td><p>Multiple MCMCs per model with sampler diagnostics.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_mcmc_rep_draws.html">tar_stan_mcmc_rep_draws()</a></code> </p>
         </td>
-        <td><p>Multiple MCMCs with draws.</p></td>
+        <td><p>Multiple MCMC runs per model with draws.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_mcmc_rep_summary.html">tar_stan_mcmc_rep_summary()</a></code> </p>
         </td>
-        <td><p>Multiple MCMCs with summaries.</p></td>
+        <td><p>Multiple MCMCs per model with summaries.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-generated-quantities" class="hasAnchor"><a href="#section-generated-quantities" class="anchor"></a>Generated quantities</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="tar_stan_gq.html">tar_stan_gq()</a></code> </p>
+        </td>
+        <td><p>Generated quantities on an existing CmdStanFit object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tar_stan_gq_rep_draws.html">tar_stan_gq_rep_draws()</a></code> </p>
+        </td>
+        <td><p>Multiple runs of generated quantities per model with draws.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tar_stan_gq_rep_summary.html">tar_stan_gq_rep_summary()</a></code> </p>
+        </td>
+        <td><p>Multiple runs of generated quantities per model with summaries.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -267,19 +292,19 @@
         <td>
           <p><code><a href="tar_stan_vb.html">tar_stan_vb()</a></code> </p>
         </td>
-        <td><p>One variational Bayes run with multiple outputs.</p></td>
+        <td><p>One variational Bayes run per model with multiple outputs.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_vb_rep_draws.html">tar_stan_vb_rep_draws()</a></code> </p>
         </td>
-        <td><p>Multiple variational Bayes runs with draws.</p></td>
+        <td><p>Multiple variational Bayes runs per model with draws.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_vb_rep_summary.html">tar_stan_vb_rep_summary()</a></code> </p>
         </td>
-        <td><p>Multiple iterations of variational Bayes with summaries.</p></td>
+        <td><p>Multiple iterations per model of variational Bayes with summaries.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -298,19 +323,19 @@
         <td>
           <p><code><a href="tar_stan_mle.html">tar_stan_mle()</a></code> </p>
         </td>
-        <td><p>One optimization run with multiple outputs.</p></td>
+        <td><p>One optimization run per model with multiple outputs.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_mle_rep_draws.html">tar_stan_mle_rep_draws()</a></code> </p>
         </td>
-        <td><p>Multiple optimization runs (wide form).</p></td>
+        <td><p>Multiple optimization runs per model with draws.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="tar_stan_mle_rep_summary.html">tar_stan_mle_rep_summary()</a></code> </p>
         </td>
-        <td><p>Multiple optimization runs (long form).</p></td>
+        <td><p>Multiple optimization runs per model with summaries</p></td>
       </tr>
     </tbody>
     </table>

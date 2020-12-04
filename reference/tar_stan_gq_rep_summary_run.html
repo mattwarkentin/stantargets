@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compile and run a Stan model and return a CmdStanMLE object. — tar_stan_mle_run • stantargets</title>
+<title>Run a Stan model and return only the summaries. — tar_stan_gq_rep_summary_run • stantargets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Compile and run a Stan model and return a CmdStanMLE object. — tar_stan_mle_run" />
+<meta property="og:title" content="Run a Stan model and return only the summaries. — tar_stan_gq_rep_summary_run" />
 <meta property="og:description" content="Not a user-side function. Do not invoke directly." />
 <meta property="og:image" content="/logo.svg" />
 
@@ -128,18 +128,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compile and run a Stan model and return a <code>CmdStanMLE</code> object.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_mle.R'><code>R/tar_stan_mle.R</code></a></small>
-    <div class="hidden name"><code>tar_stan_mle_run.Rd</code></div>
+    <h1>Run a Stan model and return only the summaries.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_gq_rep_summary.R'><code>R/tar_stan_gq_rep_summary.R</code></a></small>
+    <div class="hidden name"><code>tar_stan_gq_rep_summary_run.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Not a user-side function. Do not invoke directly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_stan_mle_run</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>tar_stan_gq_rep_summary_run</span><span class='op'>(</span>
   <span class='va'>stan_file</span>,
+  <span class='va'>stan_name</span>,
+  <span class='va'>stan_path</span>,
   <span class='va'>data</span>,
+  <span class='va'>fitted_params</span>,
   <span class='va'>compile</span>,
   <span class='va'>quiet</span>,
   <span class='va'>dir</span>,
@@ -148,91 +151,103 @@
   <span class='va'>stanc_options</span>,
   <span class='va'>force_recompile</span>,
   <span class='va'>seed</span>,
-  <span class='va'>refresh</span>,
-  <span class='va'>init</span>,
-  <span class='va'>save_latent_dynamics</span>,
   <span class='va'>output_dir</span>,
-  <span class='va'>algorithm</span>,
-  <span class='va'>init_alpha</span>,
-  <span class='va'>iter</span>,
   <span class='va'>sig_figs</span>,
-  <span class='va'>variables</span>
+  <span class='va'>parallel_chains</span>,
+  <span class='va'>threads_per_chain</span>,
+  <span class='va'>variables</span>,
+  <span class='va'>summaries</span>,
+  <span class='va'>summary_args</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>stan_file</th>
-      <td><p>Character, Stan model file or the lines of the file,
-depending on <code>compile</code>.</p></td>
-    </tr>
-    <tr>
       <th>data</th>
       <td><p>List of data to pass to the Stan model.</p></td>
     </tr>
     <tr>
+      <th>fitted_params</th>
+      <td><p>Symbol, name of a <code>CmdStanFit</code> object
+computed in a previous target: for example, the
+<code>*_mcmc_*</code> target from <code><a href='tar_stan_mcmc.html'>tar_stan_mcmc()</a></code>. Must be a subclass
+that <code>$generate_quantities()</code> can accept as <code>fitted_params</code>.</p></td>
+    </tr>
+    <tr>
       <th>compile</th>
-      <td><p>Character of length 1. If <code>"original"</code>, then
-<code>cmdstan</code> will compile the source file right before running
-it (or skip compilation if the binary is up to date). This
-assumes the worker has access to the file. If the worker
-is running on a remote computer that does not have access
-to the model file, set to <code>"copy"</code> instead. <code>compile = "copy"</code>
-means the pipeline will read the lines of the original Stan model file
-and send them to the worker. The worker writes the lines
-to a local copy and compiles the model from there, so it
-no longer needs access to the original Stan model file on your
-local machine. However, as a result, the Stan model re-compiles
-every time the main target reruns.</p></td>
+      <td><p>Do compilation? The default is <code>TRUE</code>. If <code>FALSE</code>
+compilation can be done later via the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-compile.html'>$compile()</a></code>
+method.</p></td>
+    </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p><code>quiet</code> argument to <code>$compile()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>dir</th>
+      <td><p><code>dir</code> argument to <code>$compile()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>include_paths</th>
+      <td><p><code>include_paths</code> argument to <code>$compile()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cpp_options</th>
+      <td><p><code>cpp_options</code> argument to <code>$compile()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>stanc_options</th>
+      <td><p><code>stanc_options</code> argument to <code>$compile()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>force_recompile</th>
+      <td><p><code>force_recompile</code> argument to <code>$compile()</code>.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p><code>seed</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>refresh</th>
-      <td><p><code>refresh</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>init</th>
-      <td><p><code>init</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>save_latent_dynamics</th>
-      <td><p><code>save_latent_dynamics</code>
-argument to <code>$optimize()</code>.</p></td>
+      <td><p><code>seed</code> argument to <code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p><code>output_dir</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>algorithm</th>
-      <td><p><code>algorithm</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>init_alpha</th>
-      <td><p><code>init_alpha</code> argument to <code>$optimize()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>iter</th>
-      <td><p><code>iter</code> argument to <code>$optimize()</code>.</p></td>
+      <td><p><code>output_dir</code> argument to <code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>sig_figs</th>
-      <td><p><code>sig_figs</code> argument to <code>$optimize()</code>.</p></td>
+      <td><p><code>sig_figs</code> argument to <code>$generate_quantities()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>parallel_chains</th>
+      <td><p><code>parallel_chains</code> argument to
+<code>$generate_quantities()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>threads_per_chain</th>
+      <td><p><code>threads_per_chain</code> argument to
+<code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>variables</th>
       <td><p><code>variables</code> argument to <code>$draws()</code> and <code>$summary()</code>
-on the <code>CmdStanMLE</code> object.</p></td>
+on the <code>CmdStanGQ</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>summaries</th>
+      <td><p>Optional list of summary functions passed to <code>...</code> in
+<code><a href='https://mc-stan.org/posterior/reference/draws_summary.html'>posterior::summarize_draws()</a></code> through <code>$summary()</code>
+on the <code>CmdStanFit</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>summary_args</th>
+      <td><p>Optional list of summary function arguments passed to
+<code>.args</code> in <code><a href='https://mc-stan.org/posterior/reference/draws_summary.html'>posterior::summarize_draws()</a></code> through <code>$summary()</code>
+on the <code>CmdStanFit</code> object.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>CmdStanFit</code> object.</p>
+    <p>A data frame of posterior summaries.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

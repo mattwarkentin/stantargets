@@ -160,8 +160,7 @@
     <tr>
       <th>name</th>
       <td><p>Symbol, base name for the collection of targets.
-The name itself will be applied to the fit object itself,
-and there will be suffixes for various supporting targets.</p></td>
+Serves as a prefix for target names.</p></td>
     </tr>
     <tr>
       <th>fit</th>
@@ -293,7 +292,7 @@ Use <code>tar_stan_summary()</code> to create additional specialized summaries.<
   <span class='co'># Run a model and produce default summaries.</span>
   <span class='fu'><a href='tar_stan_mcmc.html'>tar_stan_mcmc</a></span><span class='op'>(</span>
     <span class='va'>your_model</span>,
-    file <span class='op'>=</span> <span class='va'>stantargets_example.stan</span>,
+    stan_files <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='tar_stan_example_data.html'>tar_stan_example_data</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>)</span>,
   <span class='co'># Produce a more specialized summary</span>

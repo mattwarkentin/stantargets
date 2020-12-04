@@ -138,8 +138,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>tar_stan_mcmc_run</span><span class='op'>(</span>
-  <span class='va'>file</span>,
-  <span class='va'>lines</span>,
+  <span class='va'>stan_file</span>,
   <span class='va'>data</span>,
   <span class='va'>compile</span>,
   <span class='va'>quiet</span>,
@@ -183,12 +182,9 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>Character, Stan model file.</p></td>
-    </tr>
-    <tr>
-      <th>lines</th>
-      <td><p>Character, lines of Stan model code.</p></td>
+      <th>stan_file</th>
+      <td><p>Character, Stan model file or the lines of the file,
+depending on <code>compile</code>.</p></td>
     </tr>
     <tr>
       <th>data</th>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>One variational Bayes run per model with multiple outputs. — tar_stan_vb • stantargets</title>
+<title>Multiple runs of generated quantities per model with draws. — tar_stan_gq_rep_draws • stantargets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,9 @@
 
 
 
-<meta property="og:title" content="One variational Bayes run per model with multiple outputs. — tar_stan_vb" />
-<meta property="og:description" content="Targets to run a Stan model once with
-variational Bayes and save multiple outputs." />
+<meta property="og:title" content="Multiple runs of generated quantities per model with draws. — tar_stan_gq_rep_draws" />
+<meta property="og:description" content="Targets to run generated quantities multiple times and
+save only the draws from each run." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -129,20 +129,24 @@ variational Bayes and save multiple outputs." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>One variational Bayes run per model with multiple outputs.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_vb.R'><code>R/tar_stan_vb.R</code></a></small>
-    <div class="hidden name"><code>tar_stan_vb.Rd</code></div>
+    <h1>Multiple runs of generated quantities per model with draws.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_gq_rep_draws.R'><code>R/tar_stan_gq_rep_draws.R</code></a></small>
+    <div class="hidden name"><code>tar_stan_gq_rep_draws.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Targets to run a Stan model once with
-variational Bayes and save multiple outputs.</p>
+    <p>Targets to run generated quantities multiple times and
+save only the draws from each run.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_stan_vb</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>tar_stan_gq_rep_draws</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>stan_files</span>,
   data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>fitted_params</span>,
+  batches <span class='op'>=</span> <span class='fl'>1L</span>,
+  reps <span class='op'>=</span> <span class='fl'>1L</span>,
+  combine <span class='op'>=</span> <span class='cn'>FALSE</span>,
   compile <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"original"</span>, <span class='st'>"copy"</span><span class='op'>)</span>,
   quiet <span class='op'>=</span> <span class='cn'>TRUE</span>,
   dir <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -151,26 +155,11 @@ variational Bayes and save multiple outputs.</p>
   stanc_options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   force_recompile <span class='op'>=</span> <span class='cn'>FALSE</span>,
   seed <span class='op'>=</span> <span class='cn'>NULL</span>,
-  refresh <span class='op'>=</span> <span class='cn'>NULL</span>,
-  init <span class='op'>=</span> <span class='cn'>NULL</span>,
-  save_latent_dynamics <span class='op'>=</span> <span class='cn'>FALSE</span>,
   output_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
-  algorithm <span class='op'>=</span> <span class='cn'>NULL</span>,
-  iter <span class='op'>=</span> <span class='cn'>NULL</span>,
-  grad_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
-  elbo_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
-  eta <span class='op'>=</span> <span class='cn'>NULL</span>,
-  adapt_engaged <span class='op'>=</span> <span class='cn'>NULL</span>,
-  adapt_iter <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tol_rel_obj <span class='op'>=</span> <span class='cn'>NULL</span>,
-  eval_elbo <span class='op'>=</span> <span class='cn'>NULL</span>,
-  output_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
   sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  parallel_chains <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"mc.cores"</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  threads_per_chain <span class='op'>=</span> <span class='cn'>NULL</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
-  summaries <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  summary_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  draws <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  summary <span class='op'>=</span> <span class='cn'>TRUE</span>,
   tidy_eval <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"tidy_eval"</span><span class='op'>)</span>,
   packages <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"packages"</span><span class='op'>)</span>,
   library <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"library"</span><span class='op'>)</span>,
@@ -207,6 +196,29 @@ the suffixed will come from <code><a href='https://rdrr.io/r/base/names.html'>na
       <td><p>List of data to pass to the Stan model.</p></td>
     </tr>
     <tr>
+      <th>fitted_params</th>
+      <td><p>Symbol, name of a <code>CmdStanFit</code> object
+computed in a previous target: for example, the
+<code>*_mcmc_*</code> target from <code><a href='tar_stan_mcmc.html'>tar_stan_mcmc()</a></code>. Must be a subclass
+that <code>$generate_quantities()</code> can accept as <code>fitted_params</code>.</p></td>
+    </tr>
+    <tr>
+      <th>batches</th>
+      <td><p>Number of batches. Each batch is a branch target
+that generates a dataset and runs the model <code>reps</code> times.</p></td>
+    </tr>
+    <tr>
+      <th>reps</th>
+      <td><p>Number of replications per batch.</p></td>
+    </tr>
+    <tr>
+      <th>combine</th>
+      <td><p>Logical, whether to create a target to
+combine all the model results
+into a single data frame downstream. Convenient, but
+duplicates data.</p></td>
+    </tr>
+    <tr>
       <th>compile</th>
       <td><p>Do compilation? The default is <code>TRUE</code>. If <code>FALSE</code>
 compilation can be done later via the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-compile.html'>$compile()</a></code>
@@ -238,96 +250,30 @@ method.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p><code>seed</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>refresh</th>
-      <td><p><code>refresh</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>init</th>
-      <td><p><code>init</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>save_latent_dynamics</th>
-      <td><p><code>save_latent_dynamics</code>
-argument to <code>$variational()</code>.</p></td>
+      <td><p><code>seed</code> argument to <code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p><code>output_dir</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>algorithm</th>
-      <td><p><code>algorithm</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>iter</th>
-      <td><p><code>iter</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>grad_samples</th>
-      <td><p><code>grad_samples</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>elbo_samples</th>
-      <td><p><code>elbo_samples</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>eta</th>
-      <td><p><code>eta</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>adapt_engaged</th>
-      <td><p><code>adapt_engaged</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>adapt_iter</th>
-      <td><p><code>adapt_iter</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tol_rel_obj</th>
-      <td><p><code>tol_rel_obj</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>eval_elbo</th>
-      <td><p><code>eval_elbo</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>output_samples</th>
-      <td><p><code>output_samples</code> argument to <code>$variational()</code>.</p></td>
+      <td><p><code>output_dir</code> argument to <code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>sig_figs</th>
-      <td><p><code>sig_figs</code> argument to <code>$variational()</code>.</p></td>
+      <td><p><code>sig_figs</code> argument to <code>$generate_quantities()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>parallel_chains</th>
+      <td><p><code>parallel_chains</code> argument to
+<code>$generate_quantities()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>threads_per_chain</th>
+      <td><p><code>threads_per_chain</code> argument to
+<code>$generate_quantities()</code>.</p></td>
     </tr>
     <tr>
       <th>variables</th>
-      <td><p><code>variables</code> argument to <code>$draws()</code> and <code>$summary()</code>
-on the <code>CmdStanVB</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>summaries</th>
-      <td><p>Optional list of summary functions passed to <code>...</code> in
-<code><a href='https://mc-stan.org/posterior/reference/draws_summary.html'>posterior::summarize_draws()</a></code> through <code>$summary()</code>
-on the <code>CmdStanFit</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>summary_args</th>
-      <td><p>Optional list of summary function arguments passed to
-<code>.args</code> in <code><a href='https://mc-stan.org/posterior/reference/draws_summary.html'>posterior::summarize_draws()</a></code> through <code>$summary()</code>
-on the <code>CmdStanFit</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>draws</th>
-      <td><p>Logical, whether to create a target for posterior draws.
-Saves <code><a href='https://mc-stan.org/posterior/reference/draws_df.html'>posterior::as_draws_df(fit$draws())</a></code> to a compressed <code>tibble</code>.
-Convenient, but duplicates storage.</p></td>
-    </tr>
-    <tr>
-      <th>summary</th>
-      <td><p>Logical, whether to create a target for
-<code>fit$summary()</code>.</p></td>
+      <td><p><code>variables</code> argument to <code>$draws()</code> on the <code>CmdStanMCMC</code>
+object.</p></td>
     </tr>
     <tr>
       <th>tidy_eval</th>
@@ -440,25 +386,23 @@ rules that decide whether the target is up to date.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>tar_stan_vb(name = x, stan_files = "y.stan", ...)</code> returns a list
-of <code><a href='https://wlandau.github.io/targets/reference/tar_target.html'>targets::tar_target()</a></code> objects:</p><ul>
+    <p><code>tar_stan_gq_rep_draws(name = x, stan_files = "y.stan")</code>
+returns a list of <code><a href='https://wlandau.github.io/targets/reference/tar_target.html'>targets::tar_target()</a></code> objects:</p><ul>
 <li><p><code>x_file_y</code>: reproducibly track the Stan model file.</p></li>
 <li><p><code>x_lines_y</code>: contents of the Stan model file.
 Omitted if <code>compile = "original"</code>.</p></li>
-<li><p><code>x_data</code>: data for the variational Bayes computation.</p></li>
-<li><p><code>x_vb_y</code>: <code>CmdStanVB</code> object with all the VB results.</p></li>
-<li><p><code>x_draws_y</code>: tidy data frame of VB draws. Omitted if <code>draws = FALSE</code>.</p></li>
-<li><p><code>x_summary_y</code>: tidy data frame of VB summaries.
-Omitted if <code>summary = FALSE</code>.
-If you supply multiple models, you will get more (model-specific) targets.
-All the models share the same dataset.</p></li>
+<li><p><code>x_data</code>: dynamic branching target with simulated datasets.</p></li>
+<li><p><code>x_y</code>: dynamic branching target with tidy data frames of draws.</p></li>
+<li><p><code>x</code>: combine all the model-specific draws targets into
+a single data frame with columns to distinguish among the models.
+Suppressed if <code>combine</code> is <code>FALSE</code>.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Most of the arguments are passed to the <code>$compile()</code>,
-<code>$variational()</code>, and <code>$summary()</code> methods of the <code>CmdStanModel</code> class.
-If you previously compiled the model in an upstream <code><a href='tar_stan_compile.html'>tar_stan_compile()</a></code>
+    <p>Most of the arguments are passed to the <code>$compile()</code>
+and <code>$sample()</code> methods of the <code>CmdStanModel</code> class. If you
+previously compiled the model in an upstream <code><a href='tar_stan_compile.html'>tar_stan_compile()</a></code>
 target, then the model should not recompile.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -466,15 +410,21 @@ target, then the model should not recompile.</p>
 <span class='co'># tar_stan_example_file() # Writes stantargets_example.stan</span>
 <span class='co'># Then in _targets.R, write the pipeline:</span>
 <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_pipeline.html'>tar_pipeline</a></span><span class='op'>(</span>
-  <span class='fu'>tar_stan_vb</span><span class='op'>(</span>
+  <span class='fu'><a href='tar_stan_mcmc.html'>tar_stan_mcmc</a></span><span class='op'>(</span>
+    <span class='va'>your_model</span>,
+    stan_files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span><span class='op'>)</span>,
+    data <span class='op'>=</span> <span class='fu'><a href='tar_stan_example_data.html'>tar_stan_example_data</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>,
+  <span class='fu'>tar_stan_gq_rep_draws</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
     stan_files <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='tar_stan_example_data.html'>tar_stan_example_data</a></span><span class='op'>(</span><span class='op'>)</span>,
-    variables <span class='op'>=</span> <span class='st'>"beta"</span>,
-    summaries <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>.x</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='fl'>0.75</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+    fitted_params <span class='op'>=</span> <span class='va'>your_model_mcmc_x</span>,
+    batches <span class='op'>=</span> <span class='fl'>2</span>,
+    reps <span class='op'>=</span> <span class='fl'>2</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;pipeline with 5 targets&gt;</div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error: duplicated target names: your_model_data</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
