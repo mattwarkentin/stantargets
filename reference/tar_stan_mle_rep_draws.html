@@ -162,6 +162,12 @@ save only the MLEs in a wide-form "draws" data frame.</p>
   init_alpha <span class='op'>=</span> <span class='cn'>NULL</span>,
   iter <span class='op'>=</span> <span class='cn'>NULL</span>,
   sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tol_obj <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tol_rel_obj <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tol_grad <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tol_rel_grad <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tol_param <span class='op'>=</span> <span class='cn'>NULL</span>,
+  history_size <span class='op'>=</span> <span class='cn'>NULL</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   tidy_eval <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"tidy_eval"</span><span class='op'>)</span>,
   packages <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"packages"</span><span class='op'>)</span>,
@@ -280,6 +286,30 @@ argument to <code>$optimize()</code>.</p></td>
     <tr>
       <th>sig_figs</th>
       <td><p><code>sig_figs</code> argument to <code>$optimize()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tol_obj</th>
+      <td><p><code>tol_obj</code> argument to <code>$optimize()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tol_rel_obj</th>
+      <td><p><code>tol_rel_obj</code> argument to <code>$optimize()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tol_grad</th>
+      <td><p><code>tol_grad</code> argument to <code>$optimize()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tol_rel_grad</th>
+      <td><p><code>tol_rel_grad</code> argument to <code>$optimize()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>tol_param</th>
+      <td><p><code>tol_param</code> argument to <code>$optimize()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>history_size</th>
+      <td><p><code>history_size</code> argument to <code>$optimize()</code>.</p></td>
     </tr>
     <tr>
       <th>variables</th>
