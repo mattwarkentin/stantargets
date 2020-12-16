@@ -221,6 +221,22 @@ the suffixed will come from <code><a href='https://rdrr.io/r/base/names.html'>na
       <td><p>Code to generate the <code>data</code> for the Stan model.</p></td>
     </tr>
     <tr>
+      <th>batches</th>
+      <td><p>Number of batches. Each batch is a branch target
+that generates a dataset and runs the model <code>reps</code> times.</p></td>
+    </tr>
+    <tr>
+      <th>reps</th>
+      <td><p>Number of replications per batch.</p></td>
+    </tr>
+    <tr>
+      <th>combine</th>
+      <td><p>Logical, whether to create a target to
+combine all the model results
+into a single data frame downstream. Convenient, but
+duplicates data.</p></td>
+    </tr>
+    <tr>
       <th>compile</th>
       <td><p>Do compilation? The default is <code>TRUE</code>. If <code>FALSE</code>
 compilation can be done later via the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-compile.html'>$compile()</a></code>
