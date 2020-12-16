@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/wlandau/stantargets">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -299,8 +299,7 @@ default is 4.</p></td>
 to run in parallel. If <code>parallel_chains</code> is not specified then the default
 is to look for the option <code>"mc.cores"</code>, which can be set for an entire <span style="R">R</span>
 session by <code><a href='https://rdrr.io/r/base/options.html'>options(mc.cores=value)</a></code>. If the <code>"mc.cores"</code> option has not
-been set then the default is <code>1</code>. This argument is available for
-the <code>$sample()</code> method but not for the <code>$sample_mpi()</code> method.</p></td>
+been set then the default is <code>1</code>.</p></td>
     </tr>
     <tr>
       <th>chain_ids</th>
@@ -317,9 +316,7 @@ using the Stan functions <code>reduce_sum()</code> or <code>map_rect()</code>). 
 contrast with <code>parallel_chains</code>, which specifies the number of chains to
 run in parallel. The actual number of CPU cores used use is
 <code>parallel_chains*threads_per_chain</code>. For an example of using threading see
-the Stan case study <a href='https://mc-stan.org/users/documentation/case-studies/reduce_sum_tutorial.html'>Reduce Sum: A Minimal Example</a>.
-This argument is available for the <code>$sample()</code> method but not for the
-<code>$sample_mpi()</code> method.</p></td>
+the Stan case study <a href='https://mc-stan.org/users/documentation/case-studies/reduce_sum_tutorial.html'>Reduce Sum: A Minimal Example</a>.</p></td>
     </tr>
     <tr>
       <th>iter_warmup</th>

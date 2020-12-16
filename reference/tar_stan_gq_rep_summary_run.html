@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/wlandau/stantargets">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -180,8 +180,14 @@ more convenient to specify the Stan program as a string.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>Same
-as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+      <td><p>(multiple options) The data to use for the variables specified in
+the <code>data</code> block of the Stan program. One of the following:</p><ul>
+<li><p>A named list of <span style="R">R</span> objects (like for RStan). Internally this list is then
+written to JSON for CmdStan using <code><a href='https://mc-stan.org/cmdstanr/reference/write_stan_json.html'>write_stan_json()</a></code>.</p></li>
+<li><p>A path to a data file compatible with CmdStan (JSON or <span style="R">R</span> dump). See the
+appendices in the CmdStan manual for details on using these formats.</p></li>
+<li><p><code>NULL</code> or an empty list if the Stan program has no <code>data</code> block.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>fitted_params</th>
@@ -235,28 +241,51 @@ not modified since last compiled. The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>Same
-as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+      <td><p>(positive integer) A seed for the (P)RNG to pass to CmdStan.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p>Same
-as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+      <td><p>(string) A path to a directory where CmdStan should write
+its output CSV files. For interactive use this can typically be left at
+<code>NULL</code> (temporary directory) since CmdStanR makes the CmdStan output
+(posterior draws and diagnostics) available in <span style="R">R</span> via methods of the fitted
+model objects. The behavior of <code>output_dir</code> is as follows:</p><ul>
+<li><p>If <code>NULL</code> (the default), then the CSV files are written to a temporary
+directory and only saved permanently if the user calls one of the <code>$save_*</code>
+methods of the fitted model object (e.g.,
+<code><a href='https://mc-stan.org/cmdstanr/reference/fit-method-save_output_files.html'>$save_output_files()</a></code>). These temporary
+files are removed when the fitted model object is
+<a href='https://rdrr.io/r/base/gc.html'>garbage collected</a> (manually or automatically).</p></li>
+<li><p>If a path, then the files are created in <code>output_dir</code> with names
+corresponding to the defaults used by <code>$save_output_files()</code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>sig_figs</th>
-      <td><p>Same
-as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+      <td><p>(positive integer) The number of significant figures used
+when storing the output values. By default, CmdStan represent the output
+values with 6 significant figures. The upper limit for <code>sig_figs</code> is 18.
+Increasing this value will result in larger output CSV files and thus an
+increased usage of disk space.</p></td>
     </tr>
     <tr>
       <th>parallel_chains</th>
-      <td><p>Same
-as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+      <td><p>(positive integer) The <em>maximum</em> number of MCMC chains
+to run in parallel. If <code>parallel_chains</code> is not specified then the default
+is to look for the option <code>"mc.cores"</code>, which can be set for an entire <span style="R">R</span>
+session by <code><a href='https://rdrr.io/r/base/options.html'>options(mc.cores=value)</a></code>. If the <code>"mc.cores"</code> option has not
+been set then the default is <code>1</code>.</p></td>
     </tr>
     <tr>
       <th>threads_per_chain</th>
-      <td><p>Same
-as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+      <td><p>(positive integer) If the model was
+<a href='https://mc-stan.org/cmdstanr/reference/model-method-compile.html'>compiled</a> with threading support, the number of
+threads to use in parallelized sections <em>within</em> an MCMC chain (e.g., when
+using the Stan functions <code>reduce_sum()</code> or <code>map_rect()</code>). This is in
+contrast with <code>parallel_chains</code>, which specifies the number of chains to
+run in parallel. The actual number of CPU cores used use is
+<code>parallel_chains*threads_per_chain</code>. For an example of using threading see
+the Stan case study <a href='https://mc-stan.org/users/documentation/case-studies/reduce_sum_tutorial.html'>Reduce Sum: A Minimal Example</a>.</p></td>
     </tr>
     <tr>
       <th>copy_data</th>
