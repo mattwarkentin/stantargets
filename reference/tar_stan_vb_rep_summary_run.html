@@ -175,8 +175,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>stan_file</th>
-      <td><p>Character, Stan model file or the lines of the file,
-depending on <code>compile</code>.</p></td>
+      <td><p>The path to a <code>.stan</code> file containing a Stan program. The
+helper function <code><a href='https://mc-stan.org/cmdstanr/reference/write_stan_file.html'>write_stan_file()</a></code> is provided for cases when it is
+more convenient to specify the Stan program as a string.</p></td>
     </tr>
     <tr>
       <th>stan_name</th>
@@ -188,7 +189,14 @@ depending on <code>compile</code>.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>List of data to pass to the Stan model.</p></td>
+      <td><p>(multiple options) The data to use for the variables specified in
+the <code>data</code> block of the Stan program. One of the following:</p><ul>
+<li><p>A named list of <span style="R">R</span> objects (like for RStan). Internally this list is then
+written to JSON for CmdStan using <code><a href='https://mc-stan.org/cmdstanr/reference/write_stan_json.html'>write_stan_json()</a></code>.</p></li>
+<li><p>A path to a data file compatible with CmdStan (JSON or <span style="R">R</span> dump). See the
+appendices in the CmdStan manual for details on using these formats.</p></li>
+<li><p><code>NULL</code> or an empty list if the Stan program has no <code>data</code> block.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>compile</th>
@@ -207,73 +215,126 @@ every time the main target reruns.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p><code>seed</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) A seed for the (P)RNG to pass to CmdStan.</p></td>
     </tr>
     <tr>
       <th>refresh</th>
-      <td><p><code>refresh</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(non-negative integer) The number of iterations between
+printed screen updates. If <code>refresh = 0</code>, only error messages will be
+printed.</p></td>
     </tr>
     <tr>
       <th>init</th>
-      <td><p><code>init</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(multiple options) The initialization method to use for the
+variables declared in the <code>parameters</code> block of the Stan program:</p><ul>
+<li><p>A real number <code>x&gt;0</code>. This initializes <em>all</em> parameters randomly between
+<code>[-x,x]</code> (on the <em>unconstrained</em> parameter space);</p></li>
+<li><p>The number <code>0</code>. This initializes <em>all</em> parameters to <code>0</code>;</p></li>
+<li><p>A character vector of paths (one per chain) to JSON or Rdump files
+containing initial values for all or some parameters. See
+<code><a href='https://mc-stan.org/cmdstanr/reference/write_stan_json.html'>write_stan_json()</a></code> to write <span style="R">R</span> objects to JSON files compatible with
+CmdStan.</p></li>
+<li><p>A list of lists containing initial values for all or some parameters. For
+MCMC the list should contain a sublist for each chain. For optimization and
+variational inference there should be just one sublist. The sublists should
+have named elements corresponding to the parameters for which you are
+specifying initial values. See <strong>Examples</strong>.</p></li>
+<li><p>A function that returns a single list with names corresponding to the
+parameters for which you are specifying initial values. The function can
+take no arguments or a single argument <code>chain_id</code>. For MCMC, if the function
+has argument <code>chain_id</code> it will be supplied with the chain id (from 1 to
+number of chains) when called to generate the initial values. See
+<strong>Examples</strong>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>save_latent_dynamics</th>
-      <td><p><code>save_latent_dynamics</code>
-argument to <code>$variational()</code>.</p></td>
+      <td><p>(logical) Should auxiliary diagnostic information
+about the latent dynamics be written to temporary diagnostic CSV files?
+This argument replaces CmdStan's <code>diagnostic_file</code> argument and the content
+written to CSV is controlled by the user's CmdStan installation and not
+CmdStanR (for some algorithms no content may be written). The default
+is <code>FALSE</code>, which is appropriate for almost every use case. To save the
+temporary files created when <code>save_latent_dynamics=TRUE</code> see the
+<code><a href='https://mc-stan.org/cmdstanr/reference/fit-method-save_output_files.html'>$save_latent_dynamics_files()</a></code>
+method.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p><code>output_dir</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(string) A path to a directory where CmdStan should write
+its output CSV files. For interactive use this can typically be left at
+<code>NULL</code> (temporary directory) since CmdStanR makes the CmdStan output
+(posterior draws and diagnostics) available in <span style="R">R</span> via methods of the fitted
+model objects. The behavior of <code>output_dir</code> is as follows:</p><ul>
+<li><p>If <code>NULL</code> (the default), then the CSV files are written to a temporary
+directory and only saved permanently if the user calls one of the <code>$save_*</code>
+methods of the fitted model object (e.g.,
+<code><a href='https://mc-stan.org/cmdstanr/reference/fit-method-save_output_files.html'>$save_output_files()</a></code>). These temporary
+files are removed when the fitted model object is
+<a href='https://rdrr.io/r/base/gc.html'>garbage collected</a> (manually or automatically).</p></li>
+<li><p>If a path, then the files are created in <code>output_dir</code> with names
+corresponding to the defaults used by <code>$save_output_files()</code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>algorithm</th>
-      <td><p><code>algorithm</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(string) The algorithm. Either <code>"meanfield"</code> or
+<code>"fullrank"</code>.</p></td>
     </tr>
     <tr>
       <th>iter</th>
-      <td><p><code>iter</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) The <em>maximum</em> number of iterations.</p></td>
     </tr>
     <tr>
       <th>grad_samples</th>
-      <td><p><code>grad_samples</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) The number of samples for Monte Carlo
+estimate of gradients.</p></td>
     </tr>
     <tr>
       <th>elbo_samples</th>
-      <td><p><code>elbo_samples</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) The number of samples for Monte Carlo
+estimate of ELBO (objective function).</p></td>
     </tr>
     <tr>
       <th>eta</th>
-      <td><p><code>eta</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive real) The step size weighting parameter for adaptive
+step size sequence.</p></td>
     </tr>
     <tr>
       <th>adapt_engaged</th>
-      <td><p><code>adapt_engaged</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(logical) Do warmup adaptation? The default is <code>TRUE</code>.
+If a precomputed inverse metric is specified via the <code>inv_metric</code> argument
+(or <code>metric_file</code>) then, if <code>adapt_engaged=TRUE</code>, Stan will use the
+provided inverse metric just as an initial guess during adaptation. To turn
+off adaptation when using a precomputed inverse metric set
+<code>adapt_engaged=FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>adapt_iter</th>
-      <td><p><code>adapt_iter</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) The <em>maximum</em> number of adaptation
+iterations.</p></td>
     </tr>
     <tr>
       <th>tol_rel_obj</th>
-      <td><p><code>tol_rel_obj</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive real) Convergence tolerance on the relative norm
+of the objective.</p></td>
     </tr>
     <tr>
       <th>eval_elbo</th>
-      <td><p><code>eval_elbo</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) Evaluate ELBO every Nth iteration.</p></td>
     </tr>
     <tr>
       <th>output_samples</th>
-      <td><p><code>output_samples</code> argument to <code>$variational()</code>.</p></td>
+      <td><p>(positive integer) Number of approximate posterior
+samples to draw and save.</p></td>
     </tr>
     <tr>
       <th>sig_figs</th>
-      <td><p><code>sig_figs</code> argument to <code>$variational()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>variables</th>
-      <td><p><code>variables</code> argument to <code>$draws()</code> and <code>$summary()</code>
-on the <code>CmdStanVB</code> object.</p></td>
+      <td><p>(positive integer) The number of significant figures used
+when storing the output values. By default, CmdStan represent the output
+values with 6 significant figures. The upper limit for <code>sig_figs</code> is 18.
+Increasing this value will result in larger output CSV files and thus an
+increased usage of disk space.</p></td>
     </tr>
     </table>
 

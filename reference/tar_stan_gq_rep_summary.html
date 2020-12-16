@@ -195,7 +195,8 @@ the suffixed will come from <code><a href='https://rdrr.io/r/base/names.html'>na
     </tr>
     <tr>
       <th>data</th>
-      <td><p>List of data to pass to the Stan model.</p></td>
+      <td><p>Same
+as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
     </tr>
     <tr>
       <th>fitted_params</th>
@@ -228,54 +229,69 @@ method.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><code>quiet</code> argument to <code>$compile()</code>.</p></td>
+      <td><p>(logical) Should the verbose output from CmdStan during
+compilation be suppressed? The default is <code>TRUE</code>, but if you encounter an
+error we recommend trying again with <code>quiet=FALSE</code> to see more of the
+output.</p></td>
     </tr>
     <tr>
       <th>dir</th>
-      <td><p><code>dir</code> argument to <code>$compile()</code>.</p></td>
+      <td><p>(string) The path to the directory in which to store the CmdStan
+executable (or <code>.hpp</code> file if using <code>$save_hpp_file()</code>). The default is the
+same location as the Stan program.</p></td>
     </tr>
     <tr>
       <th>include_paths</th>
-      <td><p><code>include_paths</code> argument to <code>$compile()</code>.</p></td>
+      <td><p>(character vector) Paths to directories where Stan
+should look for files specified in <code>#include</code> directives in the Stan
+program.</p></td>
     </tr>
     <tr>
       <th>cpp_options</th>
-      <td><p><code>cpp_options</code> argument to <code>$compile()</code>.</p></td>
+      <td><p>(list) Any makefile options to be used when compiling the
+model (<code>STAN_THREADS</code>, <code>STAN_MPI</code>, <code>STAN_OPENCL</code>, etc.). Anything you would
+otherwise write in the <code>make/local</code> file.</p></td>
     </tr>
     <tr>
       <th>stanc_options</th>
-      <td><p><code>stanc_options</code> argument to <code>$compile()</code>.</p></td>
+      <td><p>(list) Any Stan-to-C++ transpiler options to be used
+when compiling the model. See the <strong>Examples</strong> section below as well as the
+<code>stanc</code> chapter of the CmdStan Guide for more details on available options:
+https://mc-stan.org/docs/cmdstan-guide/stanc.html.</p></td>
     </tr>
     <tr>
       <th>force_recompile</th>
-      <td><p><code>force_recompile</code> argument to <code>$compile()</code>.</p></td>
+      <td><p>(logical) Should the model be recompiled even if was
+not modified since last compiled. The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p><code>seed</code> argument to <code>$generate_quantities()</code>.</p></td>
+      <td><p>Same
+as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
     </tr>
     <tr>
       <th>output_dir</th>
-      <td><p><code>output_dir</code> argument to <code>$generate_quantities()</code>.</p></td>
+      <td><p>Same
+as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
     </tr>
     <tr>
       <th>sig_figs</th>
-      <td><p><code>sig_figs</code> argument to <code>$generate_quantities()</code>.</p></td>
+      <td><p>Same
+as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
     </tr>
     <tr>
       <th>parallel_chains</th>
-      <td><p><code>parallel_chains</code> argument to
-<code>$generate_quantities()</code>.</p></td>
+      <td><p>Same
+as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
     </tr>
     <tr>
       <th>threads_per_chain</th>
-      <td><p><code>threads_per_chain</code> argument to
-<code>$generate_quantities()</code>.</p></td>
+      <td><p>Same
+as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
     </tr>
     <tr>
       <th>variables</th>
-      <td><p><code>variables</code> argument to <code>$draws()</code> and <code>$summary()</code>
-on the <code>CmdStanGQ</code> object.</p></td>
+      <td><p>(character vector) The variables to include.</p></td>
     </tr>
     <tr>
       <th>summaries</th>
