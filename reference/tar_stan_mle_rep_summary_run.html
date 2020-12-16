@@ -180,6 +180,14 @@ helper function <code><a href='https://mc-stan.org/cmdstanr/reference/write_stan
 more convenient to specify the Stan program as a string.</p></td>
     </tr>
     <tr>
+      <th>stan_name</th>
+      <td><p>Friendly suffix of the Stan model target.</p></td>
+    </tr>
+    <tr>
+      <th>stan_path</th>
+      <td><p>Original path to the input Stan file.</p></td>
+    </tr>
+    <tr>
       <th>data</th>
       <td><p>(multiple options) The data to use for the variables specified in
 the <code>data</code> block of the Stan program. One of the following:</p><ul>
@@ -316,6 +324,14 @@ increased usage of disk space.</p></td>
       <th>history_size</th>
       <td><p>(positive integer) The size of the history used when
 approximating the Hessian. Only available for L-BFGS.</p></td>
+    </tr>
+    <tr>
+      <th>copy_data</th>
+      <td><p>Character vector of names of scalars in <code>data</code>.
+These values will be inserted as columns in the output data frame
+for each rep. Useful for simulation studies where you want to
+check the results against some "true value" in the data. See the
+<code>mcmc_rep</code> vignette for an example.</p></td>
     </tr>
     </table>
 

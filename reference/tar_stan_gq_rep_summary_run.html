@@ -165,6 +165,20 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>stan_file</th>
+      <td><p>The path to a <code>.stan</code> file containing a Stan program. The
+helper function <code><a href='https://mc-stan.org/cmdstanr/reference/write_stan_file.html'>write_stan_file()</a></code> is provided for cases when it is
+more convenient to specify the Stan program as a string.</p></td>
+    </tr>
+    <tr>
+      <th>stan_name</th>
+      <td><p>Friendly suffix of the Stan model target.</p></td>
+    </tr>
+    <tr>
+      <th>stan_path</th>
+      <td><p>Original path to the input Stan file.</p></td>
+    </tr>
+    <tr>
       <th>data</th>
       <td><p>Same
 as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
@@ -243,6 +257,14 @@ as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sa
       <th>threads_per_chain</th>
       <td><p>Same
 as for the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-sample.html'>$sample()</a></code> method.</p></td>
+    </tr>
+    <tr>
+      <th>copy_data</th>
+      <td><p>Character vector of names of scalars in <code>data</code>.
+These values will be inserted as columns in the output data frame
+for each rep. Useful for simulation studies where you want to
+check the results against some "true value" in the data. See the
+<code>mcmc_rep</code> vignette for an example.</p></td>
     </tr>
     <tr>
       <th>variables</th>
