@@ -182,8 +182,9 @@ if the number of MCMC runs is large.</p>
   sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
   validate_csv <span class='op'>=</span> <span class='cn'>TRUE</span>,
   show_messages <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   inc_warmup <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  variables <span class='op'>=</span> <span class='cn'>NULL</span>,
+  copy_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   tidy_eval <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"tidy_eval"</span><span class='op'>)</span>,
   packages <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"packages"</span><span class='op'>)</span>,
   library <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"library"</span><span class='op'>)</span>,
@@ -502,15 +503,15 @@ If the messages are silenced then the <code>$output()</code> method of the resul
 fit object can be used to display all the silenced messages.</p></td>
     </tr>
     <tr>
+      <th>inc_warmup</th>
+      <td><p>(logical) For MCMC only, should warmup draws be included?
+Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
       <th>variables</th>
       <td><p>(character vector) The variables (parameters and generated
 quantities) to read in. If <code>NULL</code> (the default) then the draws of all
 variables are included.</p></td>
-    </tr>
-    <tr>
-      <th>inc_warmup</th>
-      <td><p>(logical) For MCMC only, should warmup draws be included?
-Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>tidy_eval</th>

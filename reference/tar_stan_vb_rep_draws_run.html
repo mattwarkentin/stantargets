@@ -165,6 +165,7 @@
   <span class='va'>eval_elbo</span>,
   <span class='va'>output_samples</span>,
   <span class='va'>sig_figs</span>,
+  <span class='va'>copy_data</span>,
   <span class='va'>variables</span>
 <span class='op'>)</span></pre>
 
@@ -333,6 +334,14 @@ when storing the output values. By default, CmdStan represent the output
 values with 6 significant figures. The upper limit for <code>sig_figs</code> is 18.
 Increasing this value will result in larger output CSV files and thus an
 increased usage of disk space.</p></td>
+    </tr>
+    <tr>
+      <th>copy_data</th>
+      <td><p>Character vector of names of scalars in <code>data</code>.
+These values will be inserted as columns in the output data frame
+for each rep. Useful for simulation studies where you want to
+check the results against some "true value" in the data. See the
+<code>mcmc_rep</code> vignette for an example.</p></td>
     </tr>
     </table>
 
