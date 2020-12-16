@@ -503,6 +503,14 @@ If the messages are silenced then the <code>$output()</code> method of the resul
 fit object can be used to display all the silenced messages.</p></td>
     </tr>
     <tr>
+      <th>copy_data</th>
+      <td><p>Character vector of names of scalars in <code>data</code>.
+These values will be inserted as columns in the output data frame
+for each rep. Useful for simulation studies where you want to
+check the results against some "true value" in the data. See the
+<code>mcmc_rep</code> vignette for an example.</p></td>
+    </tr>
+    <tr>
       <th>variables</th>
       <td><p>(character vector) The variables (parameters and generated
 quantities) to read in. If <code>NULL</code> (the default) then the draws of all

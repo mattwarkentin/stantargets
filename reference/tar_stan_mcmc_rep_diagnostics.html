@@ -220,22 +220,6 @@ the suffixed will come from <code><a href='https://rdrr.io/r/base/names.html'>na
       <td><p>Code to generate the <code>data</code> for the Stan model.</p></td>
     </tr>
     <tr>
-      <th>batches</th>
-      <td><p>Number of batches. Each batch is a branch target
-that generates a dataset and runs the model <code>reps</code> times.</p></td>
-    </tr>
-    <tr>
-      <th>reps</th>
-      <td><p>Number of replications per batch.</p></td>
-    </tr>
-    <tr>
-      <th>combine</th>
-      <td><p>Logical, whether to create a target to
-combine all the model results
-into a single data frame downstream. Convenient, but
-duplicates data.</p></td>
-    </tr>
-    <tr>
       <th>compile</th>
       <td><p>Do compilation? The default is <code>TRUE</code>. If <code>FALSE</code>
 compilation can be done later via the <code><a href='https://mc-stan.org/cmdstanr/reference/model-method-compile.html'>$compile()</a></code>
@@ -505,6 +489,14 @@ fit object can be used to display all the silenced messages.</p></td>
       <th>inc_warmup</th>
       <td><p>(logical) For MCMC only, should warmup draws be included?
 Defaults to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>copy_data</th>
+      <td><p>Character vector of names of scalars in <code>data</code>.
+These values will be inserted as columns in the output data frame
+for each rep. Useful for simulation studies where you want to
+check the results against some "true value" in the data. See the
+<code>mcmc_rep</code> vignette for an example.</p></td>
     </tr>
     <tr>
       <th>tidy_eval</th>
