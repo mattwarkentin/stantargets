@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multiple optimization runs per model with draws. — tar_stan_mle_rep_draws • stantargets</title>
+<title>Multiple iterations per model of variational Bayes with tidy output. — tar_stan_vb_rep • stantargets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,8 @@
 
 
 
-<meta property="og:title" content="Multiple optimization runs per model with draws. — tar_stan_mle_rep_draws" />
-<meta property="og:description" content="Targets to run vb multiple times and
-save only the MLEs in a wide-form &quot;draws&quot; data frame." />
+<meta property="og:title" content="Multiple iterations per model of variational Bayes with tidy output. — tar_stan_vb_rep" />
+<meta property="og:description" content="Internal function. Users should not invoke directly." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -129,20 +128,20 @@ save only the MLEs in a wide-form &quot;draws&quot; data frame." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multiple optimization runs per model with draws.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_mle_rep_draws.R'><code>R/tar_stan_mle_rep_draws.R</code></a></small>
-    <div class="hidden name"><code>tar_stan_mle_rep_draws.Rd</code></div>
+    <h1>Multiple iterations per model of variational Bayes with tidy output.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wlandau/stantargets/blob/master/R/tar_stan_vb_rep.R'><code>R/tar_stan_vb_rep.R</code></a></small>
+    <div class="hidden name"><code>tar_stan_vb_rep.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Targets to run vb multiple times and
-save only the MLEs in a wide-form "draws" data frame.</p>
+    <p>Internal function. Users should not invoke directly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_stan_mle_rep_draws</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>tar_stan_vb_rep</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>stan_files</span>,
   data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  output <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"summary"</span>, <span class='st'>"draws"</span><span class='op'>)</span>,
   batches <span class='op'>=</span> <span class='fl'>1L</span>,
   reps <span class='op'>=</span> <span class='fl'>1L</span>,
   combine <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -159,17 +158,20 @@ save only the MLEs in a wide-form "draws" data frame.</p>
   save_latent_dynamics <span class='op'>=</span> <span class='cn'>FALSE</span>,
   output_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
   algorithm <span class='op'>=</span> <span class='cn'>NULL</span>,
-  init_alpha <span class='op'>=</span> <span class='cn'>NULL</span>,
   iter <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tol_obj <span class='op'>=</span> <span class='cn'>NULL</span>,
+  grad_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
+  elbo_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
+  eta <span class='op'>=</span> <span class='cn'>NULL</span>,
+  adapt_engaged <span class='op'>=</span> <span class='cn'>NULL</span>,
+  adapt_iter <span class='op'>=</span> <span class='cn'>NULL</span>,
   tol_rel_obj <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tol_grad <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tol_rel_grad <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tol_param <span class='op'>=</span> <span class='cn'>NULL</span>,
-  history_size <span class='op'>=</span> <span class='cn'>NULL</span>,
+  eval_elbo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
   copy_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
+  summaries <span class='op'>=</span> <span class='cn'>NULL</span>,
+  summary_args <span class='op'>=</span> <span class='cn'>NULL</span>,
   tidy_eval <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"tidy_eval"</span><span class='op'>)</span>,
   packages <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"packages"</span><span class='op'>)</span>,
   library <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"library"</span><span class='op'>)</span>,
@@ -207,6 +209,11 @@ written to JSON for CmdStan using <code><a href='https://mc-stan.org/cmdstanr/re
 appendices in the CmdStan manual for details on using these formats.</p></li>
 <li><p><code>NULL</code> or an empty list if the Stan program has no <code>data</code> block.</p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Type of output to create, either <code>"summaries"</code>,
+<code>"draws"</code>, or <code>"diagnostics"</code>.</p></td>
     </tr>
     <tr>
       <th>batches</th>
@@ -332,19 +339,50 @@ corresponding to the defaults used by <code>$save_output_files()</code>.</p></li
     </tr>
     <tr>
       <th>algorithm</th>
-      <td><p>(string) The optimization algorithm. One of <code>"lbfgs"</code>,
-<code>"bfgs"</code>, or <code>"newton"</code>. The control parameters below are only available
-for <code>"lbfgs"</code> and <code>"bfgs</code>. For their default values and more details see
-the CmdStan User's Guide. The default values can also be obtained by
-running <code>cmdstanr_example(method="optimize")$metadata()</code>.</p></td>
-    </tr>
-    <tr>
-      <th>init_alpha</th>
-      <td><p>(positive real) The initial step size parameter.</p></td>
+      <td><p>(string) The algorithm. Either <code>"meanfield"</code> or
+<code>"fullrank"</code>.</p></td>
     </tr>
     <tr>
       <th>iter</th>
-      <td><p>(positive integer) The maximum number of iterations.</p></td>
+      <td><p>(positive integer) The <em>maximum</em> number of iterations.</p></td>
+    </tr>
+    <tr>
+      <th>grad_samples</th>
+      <td><p>(positive integer) The number of samples for Monte Carlo
+estimate of gradients.</p></td>
+    </tr>
+    <tr>
+      <th>elbo_samples</th>
+      <td><p>(positive integer) The number of samples for Monte Carlo
+estimate of ELBO (objective function).</p></td>
+    </tr>
+    <tr>
+      <th>eta</th>
+      <td><p>(positive real) The step size weighting parameter for adaptive
+step size sequence.</p></td>
+    </tr>
+    <tr>
+      <th>adapt_engaged</th>
+      <td><p>(logical) Do warmup adaptation?</p></td>
+    </tr>
+    <tr>
+      <th>adapt_iter</th>
+      <td><p>(positive integer) The <em>maximum</em> number of adaptation
+iterations.</p></td>
+    </tr>
+    <tr>
+      <th>tol_rel_obj</th>
+      <td><p>(positive real) Convergence tolerance on the relative norm
+of the objective.</p></td>
+    </tr>
+    <tr>
+      <th>eval_elbo</th>
+      <td><p>(positive integer) Evaluate ELBO every Nth iteration.</p></td>
+    </tr>
+    <tr>
+      <th>output_samples</th>
+      <td><p>(positive integer) Number of approximate posterior
+samples to draw and save.</p></td>
     </tr>
     <tr>
       <th>sig_figs</th>
@@ -353,31 +391,6 @@ when storing the output values. By default, CmdStan represent the output
 values with 6 significant figures. The upper limit for <code>sig_figs</code> is 18.
 Increasing this value will result in larger output CSV files and thus an
 increased usage of disk space.</p></td>
-    </tr>
-    <tr>
-      <th>tol_obj</th>
-      <td><p>(positive real) Convergence tolerance on changes in objective function value.</p></td>
-    </tr>
-    <tr>
-      <th>tol_rel_obj</th>
-      <td><p>(positive real) Convergence tolerance on relative changes in objective function value.</p></td>
-    </tr>
-    <tr>
-      <th>tol_grad</th>
-      <td><p>(positive real) Convergence tolerance on the norm of the gradient.</p></td>
-    </tr>
-    <tr>
-      <th>tol_rel_grad</th>
-      <td><p>(positive real) Convergence tolerance on the relative norm of the gradient.</p></td>
-    </tr>
-    <tr>
-      <th>tol_param</th>
-      <td><p>(positive real) Convergence tolerance on changes in parameter value.</p></td>
-    </tr>
-    <tr>
-      <th>history_size</th>
-      <td><p>(positive integer) The size of the history used when
-approximating the Hessian. Only available for L-BFGS.</p></td>
     </tr>
     <tr>
       <th>copy_data</th>
@@ -391,6 +404,18 @@ check the results against some "true value" in the data. See the
       <th>variables</th>
       <td><p>(character vector) The variables to read in. If <code>NULL</code> (the
 default) then all variables are included.</p></td>
+    </tr>
+    <tr>
+      <th>summaries</th>
+      <td><p>Optional list of summary functions passed to <code>...</code> in
+<code><a href='https://mc-stan.org/posterior/reference/draws_summary.html'>posterior::summarize_draws()</a></code> through <code>$summary()</code>
+on the <code>CmdStanFit</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>summary_args</th>
+      <td><p>Optional list of summary function arguments passed to
+<code>.args</code> in <code><a href='https://mc-stan.org/posterior/reference/draws_summary.html'>posterior::summarize_draws()</a></code> through <code>$summary()</code>
+on the <code>CmdStanFit</code> object.</p></td>
     </tr>
     <tr>
       <th>tidy_eval</th>
@@ -503,39 +528,19 @@ rules that decide whether the target is up to date.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='tar_stan_mcmc_rep_draws.html'>tar_stan_mcmc_rep_draws(name = x, stan_files = "y.stan")</a></code>
+    <p><code>tar_stan_vb_rep(name = x,  stan_files = "y.stan")</code>
 returns a list of <code><a href='https://wlandau.github.io/targets/reference/tar_target.html'>targets::tar_target()</a></code> objects:</p><ul>
 <li><p><code>x_file_y</code>: reproducibly track the Stan model file.</p></li>
 <li><p><code>x_lines_y</code>: contents of the Stan model file.
 Omitted if <code>compile = "original"</code>.</p></li>
 <li><p><code>x_data</code>: dynamic branching target with simulated datasets.</p></li>
-<li><p><code>x_y</code>: dynamic branching target with tidy data frames of MLE draws.</p></li>
-<li><p><code>x</code>: combine all the model-specific draws targets into
+<li><p><code>x_y</code>: dynamic branching target with tidy data frames of VB output.</p></li>
+<li><p><code>x</code>: combine all the model-specific summary targets into
 a single data frame with columns to distinguish among the models.
 Suppressed if <code>combine</code> is <code>FALSE</code>.</p></li>
 </ul>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Most of the arguments are passed to the <code>$compile()</code>
-and <code>$sample()</code> methods of the <code>CmdStanModel</code> class. If you
-previously compiled the model in an upstream <code><a href='tar_stan_compile.html'>tar_stan_compile()</a></code>
-target, then the model should not recompile.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># First, write your Stan model file. Example:</span>
-<span class='co'># tar_stan_example_file() # Writes stantargets_example.stan</span>
-<span class='co'># Then in _targets.R, write the pipeline:</span>
-<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_pipeline.html'>tar_pipeline</a></span><span class='op'>(</span>
-  <span class='fu'>tar_stan_mle_rep_draws</span><span class='op'>(</span>
-    <span class='va'>your_model</span>,
-    stan_files <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span>,
-    data <span class='op'>=</span> <span class='fu'><a href='tar_stan_example_data.html'>tar_stan_example_data</a></span><span class='op'>(</span><span class='op'>)</span>,
-    batches <span class='op'>=</span> <span class='fl'>2</span>,
-    reps <span class='op'>=</span> <span class='fl'>2</span>
-  <span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;pipeline with 5 targets&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
