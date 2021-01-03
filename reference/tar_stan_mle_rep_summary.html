@@ -540,7 +540,7 @@ target, then the model should not recompile.</p>
     <pre class="examples"><div class='input'><span class='co'># First, write your Stan model file. Example:</span>
 <span class='co'># tar_stan_example_file() # Writes stantargets_example.stan</span>
 <span class='co'># Then in _targets.R, write the pipeline:</span>
-<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_pipeline.html'>tar_pipeline</a></span><span class='op'>(</span>
+<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   <span class='fu'>tar_stan_mle_rep_summary</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
     stan_files <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span>,
@@ -549,7 +549,163 @@ target, then the model should not recompile.</p>
     reps <span class='op'>=</span> <span class='fl'>2</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;pipeline with 5 targets&gt;</div></pre>
+</div><div class='output co'>#&gt; [[1]]
+#&gt; [[1]]$your_model_file_stantargets_example
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_file_stantargets_example 
+#&gt;   command:
+#&gt;     stantargets::tar_stan_compile_run(stan_file = "stantargets_example.stan", 
+#&gt;         quiet = TRUE, dir = NULL, include_paths = NULL, cpp_options = list(), 
+#&gt;         stanc_options = list(), force_recompile = FALSE) 
+#&gt;   format: file 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     stantargets
+#&gt;     stats
+#&gt;     graphics
+#&gt;     grDevices
+#&gt;     utils
+#&gt;     datasets
+#&gt;     methods
+#&gt;     base 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_stantargets_example
+#&gt; &lt;pattern target&gt; 
+#&gt;   name: your_model_stantargets_example 
+#&gt;   command:
+#&gt;     stantargets::tar_stan_mle_rep_run(stan_file = your_model_file_stantargets_example, 
+#&gt;         stan_name = "stantargets_example", stan_path = "stantargets_example.stan", 
+#&gt;         data = your_model_data, output = "summary", compile = "original", 
+#&gt;         quiet = TRUE, dir = NULL, include_paths = NULL, cpp_options = list(), 
+#&gt;         stanc_options = list(), force_recompile = FALSE, seed = NULL, 
+#&gt;         refresh = NULL, init = NULL, save_latent_dynamics = FALSE, 
+#&gt;         output_dir = NULL, algorithm = NULL, init_alpha = NULL, iter = NULL, 
+#&gt;         sig_figs = NULL, tol_obj = NULL, tol_rel_obj = NULL, tol_grad = NULL, 
+#&gt;         tol_rel_grad = NULL, tol_param = NULL, history_size = NULL, 
+#&gt;         copy_data = character(0), variables = NULL, summaries = list(), 
+#&gt;         summary_args = list()) 
+#&gt;   pattern:
+#&gt;     map(your_model_data) 
+#&gt;   format: fst_tbl 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_data
+#&gt; &lt;pattern target&gt; 
+#&gt;   name: your_model_data 
+#&gt;   command:
+#&gt;     purrr::map(seq_len(2), ~tar_stan_example_data()) 
+#&gt;   pattern:
+#&gt;     map(your_model_batch) 
+#&gt;   format: qs 
+#&gt;   iteration method: list 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     stantargets
+#&gt;     stats
+#&gt;     graphics
+#&gt;     grDevices
+#&gt;     utils
+#&gt;     datasets
+#&gt;     methods
+#&gt;     base 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_batch
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_batch 
+#&gt;   command:
+#&gt;     seq_len(2) 
+#&gt;   format: rds 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: main 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model 
+#&gt;   command:
+#&gt;     vctrs::vec_c(your_model_stantargets_example = your_model_stantargets_example) 
+#&gt;   format: fst_tbl 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: main 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

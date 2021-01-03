@@ -531,14 +531,155 @@ target, then the model should not recompile.</p>
     <pre class="examples"><div class='input'><span class='co'># First, write your Stan model file. Example:</span>
 <span class='co'># tar_stan_example_file() # Writes stantargets_example.stan</span>
 <span class='co'># Then in _targets.R, write the pipeline:</span>
-<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_pipeline.html'>tar_pipeline</a></span><span class='op'>(</span>
+<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   <span class='fu'>tar_stan_mle</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
     stan_files <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='tar_stan_example_data.html'>tar_stan_example_data</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;pipeline with 5 targets&gt;</div></pre>
+</div><div class='output co'>#&gt; [[1]]
+#&gt; [[1]]$your_model_file_stantargets_example
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_file_stantargets_example 
+#&gt;   command:
+#&gt;     "stantargets_example.stan" 
+#&gt;   format: file 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: main 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_mle_stantargets_example
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_mle_stantargets_example 
+#&gt;   command:
+#&gt;     stantargets::tar_stan_mle_run(stan_file = your_model_file_stantargets_example, 
+#&gt;         data = your_model_data, compile = "original", quiet = TRUE, 
+#&gt;         dir = NULL, include_paths = NULL, cpp_options = list(), stanc_options = list(), 
+#&gt;         force_recompile = FALSE, seed = NULL, refresh = NULL, init = NULL, 
+#&gt;         save_latent_dynamics = FALSE, output_dir = NULL, algorithm = NULL, 
+#&gt;         init_alpha = NULL, iter = NULL, sig_figs = NULL, tol_obj = NULL, 
+#&gt;         tol_rel_obj = NULL, tol_grad = NULL, tol_rel_grad = NULL, 
+#&gt;         tol_param = NULL, history_size = NULL, variables = NULL) 
+#&gt;   format: qs 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_draws_stantargets_example
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_draws_stantargets_example 
+#&gt;   command:
+#&gt;     tibble::as_tibble(posterior::as_draws_df(your_model_mle_stantargets_example$draws(variables = NULL))) 
+#&gt;   format: fst_tbl 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_summary_stantargets_example
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_summary_stantargets_example 
+#&gt;   command:
+#&gt;     tibble::tibble(your_model_mle_stantargets_example$summary(variables = identity(NULL), 
+#&gt;         .args = list())) 
+#&gt;   format: fst_tbl 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     character(0) 
+#&gt;   library:
+#&gt;     NULL
+#&gt; [[1]]$your_model_data
+#&gt; &lt;stem target&gt; 
+#&gt;   name: your_model_data 
+#&gt;   command:
+#&gt;     tar_stan_example_data() 
+#&gt;   format: qs 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     stantargets
+#&gt;     stats
+#&gt;     graphics
+#&gt;     grDevices
+#&gt;     utils
+#&gt;     datasets
+#&gt;     methods
+#&gt;     base 
+#&gt;   library:
+#&gt;     NULL
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

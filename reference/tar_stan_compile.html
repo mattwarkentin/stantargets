@@ -315,10 +315,43 @@ For details, visit <a href='https://mc-stan.org/cmdstanr/reference/'>https://mc-
     <pre class="examples"><div class='input'><span class='co'># First, write an example Stan model file.</span>
 <span class='co'># tar_stan_example_file() # Writes stantargets_example.stan.</span>
 <span class='co'># Then write a pipeline in _targets.R:</span>
-<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_pipeline.html'>tar_pipeline</a></span><span class='op'>(</span>
+<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   <span class='fu'>tar_stan_compile</span><span class='op'>(</span><span class='va'>compiled_model</span>, <span class='st'>"stantargets_example.stan"</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;pipeline with 1 target&gt;</div></pre>
+</div><div class='output co'>#&gt; [[1]]
+#&gt; &lt;stem target&gt; 
+#&gt;   name: compiled_model 
+#&gt;   command:
+#&gt;     stantargets::tar_stan_compile_run(stan_file = "stantargets_example.stan", 
+#&gt;         quiet = TRUE, dir = NULL, include_paths = NULL, cpp_options = list(), 
+#&gt;         stanc_options = list(), force_recompile = FALSE) 
+#&gt;   format: file 
+#&gt;   iteration method: vector 
+#&gt;   error mode: stop 
+#&gt;   memory mode: persistent 
+#&gt;   storage mode: main 
+#&gt;   retrieval mode: main 
+#&gt;   deploy to: worker 
+#&gt;   resources:
+#&gt;     list() 
+#&gt;   cue:
+#&gt;     mode: thorough
+#&gt;     command: TRUE
+#&gt;     depend: TRUE
+#&gt;     format: TRUE
+#&gt;     iteration: TRUE
+#&gt;     file: TRUE 
+#&gt;   packages:
+#&gt;     stantargets
+#&gt;     stats
+#&gt;     graphics
+#&gt;     grDevices
+#&gt;     utils
+#&gt;     datasets
+#&gt;     methods
+#&gt;     base 
+#&gt;   library:
+#&gt;     NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
