@@ -150,6 +150,7 @@ if the number of MCMC runs is large.</p>
   combine <span class='op'>=</span> <span class='cn'>FALSE</span>,
   compile <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"original"</span>, <span class='st'>"copy"</span><span class='op'>)</span>,
   quiet <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  log <span class='op'>=</span> <span class='cn'>NULL</span>,
   dir <span class='op'>=</span> <span class='cn'>NULL</span>,
   include_paths <span class='op'>=</span> <span class='cn'>NULL</span>,
   cpp_options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -248,6 +249,13 @@ method.</p></td>
 compilation be suppressed? The default is <code>TRUE</code>, but if you encounter an
 error we recommend trying again with <code>quiet=FALSE</code> to see more of the
 output.</p></td>
+    </tr>
+    <tr>
+      <th>log</th>
+      <td><p>Character vector, file path to write the stdout stream
+of the model when it runs. Set to <code>NULL</code> to print to the console.
+Set to <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile()</a></code> to completely suppress all output.
+Does not apply to messages, warnings, or errors.</p></td>
     </tr>
     <tr>
       <th>dir</th>
@@ -648,153 +656,26 @@ previously compiled the model in an upstream <code><a href='tar_stan_compile.htm
 target, then the model should not recompile.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># First, write your Stan model file. Example:</span>
-<span class='co'># tar_stan_example_file() # Writes stantargets_example.stan</span>
-<span class='co'># Then in _targets.R, write the pipeline:</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"TAR_EXAMPLES"</span><span class='op'>)</span> <span class='op'>==</span> <span class='st'>"true"</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span>
+<span class='fu'><a href='tar_stan_example_file.html'>tar_stan_example_file</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_script.html'>tar_script</a></span><span class='op'>(</span><span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wlandau.github.io/stantargets/'>stantargets</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   <span class='fu'>tar_stan_mcmc_rep_draws</span><span class='op'>(</span>
     <span class='va'>your_model</span>,
     stan_files <span class='op'>=</span> <span class='st'>"stantargets_example.stan"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='tar_stan_example_data.html'>tar_stan_example_data</a></span><span class='op'>(</span><span class='op'>)</span>,
     batches <span class='op'>=</span> <span class='fl'>2</span>,
-    reps <span class='op'>=</span> <span class='fl'>2</span>
+    reps <span class='op'>=</span> <span class='fl'>2</span>,
+    log <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; [[1]]$your_model_file_stantargets_example
-#&gt; &lt;stem target&gt; 
-#&gt;   name: your_model_file_stantargets_example 
-#&gt;   command:
-#&gt;     stantargets::tar_stan_compile_run(stan_file = "stantargets_example.stan", 
-#&gt;         quiet = TRUE, dir = NULL, include_paths = NULL, cpp_options = list(), 
-#&gt;         stanc_options = list(), force_recompile = FALSE) 
-#&gt;   format: file 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: worker 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     stantargets
-#&gt;     stats
-#&gt;     graphics
-#&gt;     grDevices
-#&gt;     utils
-#&gt;     datasets
-#&gt;     methods
-#&gt;     base 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_stantargets_example
-#&gt; &lt;pattern target&gt; 
-#&gt;   name: your_model_stantargets_example 
-#&gt;   command:
-#&gt;     stantargets::tar_stan_mcmc_rep_run(stan_file = your_model_file_stantargets_example, 
-#&gt;         stan_name = "stantargets_example", stan_path = "stantargets_example.stan", 
-#&gt;         data = your_model_data, output = "draws", compile = "original", 
-#&gt;         quiet = TRUE, dir = NULL, include_paths = NULL, cpp_options = list(), 
-#&gt;         stanc_options = list(), force_recompile = FALSE, seed = NULL, 
-#&gt;         refresh = NULL, init = NULL, save_latent_dynamics = FALSE, 
-#&gt;         output_dir = NULL, chains = 4, parallel_chains = 1, chain_ids = 1:4, 
-#&gt;         threads_per_chain = NULL, iter_warmup = NULL, iter_sampling = NULL, 
-#&gt;         save_warmup = FALSE, thin = NULL, max_treedepth = NULL, adapt_engaged = TRUE, 
-#&gt;         adapt_delta = NULL, step_size = NULL, metric = NULL, metric_file = NULL, 
-#&gt;         inv_metric = NULL, init_buffer = NULL, term_buffer = NULL, 
-#&gt;         window = NULL, fixed_param = FALSE, sig_figs = NULL, validate_csv = TRUE, 
-#&gt;         show_messages = TRUE, inc_warmup = FALSE, copy_data = character(0), 
-#&gt;         variables = NULL, summaries = NULL, summary_args = NULL) 
-#&gt;   pattern:
-#&gt;     map(your_model_data) 
-#&gt;   format: fst_tbl 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: worker 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     character(0) 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_data
-#&gt; &lt;pattern target&gt; 
-#&gt;   name: your_model_data 
-#&gt;   command:
-#&gt;     purrr::map(seq_len(2), ~tar_stan_example_data()) 
-#&gt;   pattern:
-#&gt;     map(your_model_batch) 
-#&gt;   format: qs 
-#&gt;   iteration method: list 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: worker 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     stantargets
-#&gt;     stats
-#&gt;     graphics
-#&gt;     grDevices
-#&gt;     utils
-#&gt;     datasets
-#&gt;     methods
-#&gt;     base 
-#&gt;   library:
-#&gt;     NULL
-#&gt; [[1]]$your_model_batch
-#&gt; &lt;stem target&gt; 
-#&gt;   name: your_model_batch 
-#&gt;   command:
-#&gt;     seq_len(2) 
-#&gt;   format: rds 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: transient 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: main 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     character(0) 
-#&gt;   library:
-#&gt;     NULL
-#&gt; </div></pre>
+<span class='op'>}</span><span class='op'>)</span>
+<span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://wlandau.github.io/targets/reference/tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

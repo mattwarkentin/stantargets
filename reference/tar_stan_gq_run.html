@@ -194,6 +194,13 @@ compilation can be done later via the <code><a href='https://mc-stan.org/cmdstan
 method.</p></td>
     </tr>
     <tr>
+      <th>log</th>
+      <td><p>Character vector, file path to write the stdout stream
+of the model when it runs. Set to <code>NULL</code> to print to the console.
+Set to <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile()</a></code> to completely suppress all output.
+Does not apply to messages, warnings, or errors.</p></td>
+    </tr>
+    <tr>
       <th>seed</th>
       <td><p>(positive integer) A seed for the (P)RNG to pass to CmdStan.</p></td>
     </tr>
