@@ -239,6 +239,13 @@ error we recommend trying again with <code>quiet=FALSE</code> to see more of the
 output.</p></td>
     </tr>
     <tr>
+      <th>log</th>
+      <td><p>Character of length 1, file path to write the stdout stream
+of the model when it runs. Set to <code>NULL</code> to print to the console.
+Set to <code><a href='https://rdrr.io/pkg/R.utils/man/nullfile.html'>R.utils::nullfile()</a></code> to completely suppress all output.
+Does not apply to messages, warnings, or errors.</p></td>
+    </tr>
+    <tr>
       <th>dir</th>
       <td><p>(string) The path to the directory in which to store the CmdStan
 executable (or <code>.hpp</code> file if using <code>$save_hpp_file()</code>). The default is the
