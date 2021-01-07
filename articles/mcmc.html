@@ -124,9 +124,7 @@ model {
     <span class="va">example</span>,
     <span class="st">"x.stan"</span>,
     <span class="fu"><a href="../reference/tar_stan_example_data.html">tar_stan_example_data</a></span><span class="op">(</span><span class="op">)</span>,
-    refresh <span class="op">=</span> <span class="fl">0</span>,
-    init <span class="op">=</span> <span class="fl">1</span>,
-    show_messages <span class="op">=</span> <span class="cn">FALSE</span>
+    log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><code><a href="../reference/tar_stan_mcmc.html">tar_stan_mcmc(example, ...)</a></code> defines several targets:</p>
@@ -160,24 +158,14 @@ model {
 <p><a href="https://github.com/wlandau/targets"><code>targets</code></a> produces a graph to show the dependency relationships among the targets. Below, the MCMC depends on the model file and the data, and the draws, summary, and diagnostics depend on the MCMC.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-1ad39bd03807bc3cc69b" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ad39bd03807bc3cc69b">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"type":["stem","stem","stem","stem","stem","stem"],"status":["outdated","outdated","outdated","outdated","outdated","outdated"],"seconds":[null,null,null,null,null,null],"bytes":[null,null,null,null,null,null],"branches":[null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"font.size":[20,20,20,20,20,20],"level":[1,3,3,1,2,3],"color":["#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_x","example_data","example_file_x"],"to":["example_diagnostics_x","example_summary_x","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Stem"],"color":["#78B7C5","#899DA4"],"shape":["dot","dot"],"font.size":[20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>Run the computation with <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code>.</p>
+<div id="htmlwidget-a3b4c99144df7adaa2d1" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a3b4c99144df7adaa2d1">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"type":["stem","stem","stem","stem","stem","stem"],"status":["outdated","outdated","outdated","outdated","outdated","outdated"],"seconds":[null,null,null,null,null,null],"bytes":[null,null,null,null,null,null],"branches":[null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"font.size":[20,20,20,20,20,20],"level":[1,3,3,1,2,3],"color":["#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_x","example_data","example_file_x"],"to":["example_diagnostics_x","example_summary_x","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Stem"],"color":["#78B7C5","#899DA4"],"shape":["dot","dot"],"font.size":[20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>Run the computation with <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ● run target example_data</span>
 <span class="co">#&gt; ● run target example_file_x</span>
 <span class="co">#&gt; ● run target example_mcmc_x</span>
 <span class="co">#&gt; Compiling Stan program...</span>
-<span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 1.0 seconds.</span>
 <span class="co">#&gt; ● run target example_diagnostics_x</span>
 <span class="co">#&gt; ● run target example_summary_x</span>
 <span class="co">#&gt; ● run target example_draws_x</span>
@@ -188,18 +176,19 @@ model {
 <span class="co">#&gt; # A tibble: 2 x 10</span>
 <span class="co">#&gt;   variable   mean median    sd   mad     q5    q95  rhat ess_bulk ess_tail</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 lp__     -5.86  -5.61  0.665 0.336 -7.19  -5.37   1.00    2052.    3023.</span>
-<span class="co">#&gt; 2 beta     -0.157 -0.158 0.442 0.459 -0.882  0.572  1.00    1394.    2394.</span></code></pre></div>
+<span class="co">#&gt; 1 lp__     -5.87  -5.61  0.684 0.336 -7.28  -5.37   1.00    1745.    2676.</span>
+<span class="co">#&gt; 2 beta     -0.156 -0.157 0.447 0.459 -0.872  0.574  1.00    1328.    2092.</span></code></pre></div>
 <p>At this point, all our results are up to date because their dependencies did not change.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ✔ skip target example_data</span>
 <span class="co">#&gt; ✔ skip target example_file_x</span>
-<span class="co">#&gt; ✔ skip target example_mcmc_x</span>
-<span class="co">#&gt; ✔ skip target example_diagnostics_x</span>
-<span class="co">#&gt; ✔ skip target example_summary_x</span>
-<span class="co">#&gt; ✔ skip target example_draws_x</span>
-<span class="co">#&gt; ✔ skip pipeline</span></code></pre></div>
+<span class="co">#&gt; ● run target example_mcmc_x</span>
+<span class="co">#&gt; Model executable is up to date!</span>
+<span class="co">#&gt; ● run target example_diagnostics_x</span>
+<span class="co">#&gt; ● run target example_summary_x</span>
+<span class="co">#&gt; ● run target example_draws_x</span>
+<span class="co">#&gt; ● end pipeline</span></code></pre></div>
 <p>But if we change the underlying code or data, some of the targets will no longer be valid, and they will rerun during the next <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code>. Below, we change the Stan model file, so the MCMC reruns while the data is skipped. This behavior saves time and enhances reproducibility.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/write.html">write</a></span><span class="op">(</span><span class="st">" "</span>, file <span class="op">=</span> <span class="st">"x.stan"</span>, append <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -209,23 +198,13 @@ model {
 <span class="co">#&gt; [4] "example_draws_x"       "example_mcmc_x"</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-be17db728049976572db" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-be17db728049976572db">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"type":["stem","stem","stem","stem","stem","stem"],"status":["uptodate","outdated","outdated","outdated","outdated","outdated"],"seconds":[0.001,0.008,0.006,0,15.934,0.05],"bytes":[220,84378,72076,166,151749,1000],"branches":[null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"font.size":[20,20,20,20,20,20],"level":[1,3,3,1,2,3],"color":["#354823","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_x","example_data","example_file_x"],"to":["example_diagnostics_x","example_summary_x","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem"],"color":["#354823","#78B7C5","#899DA4"],"shape":["dot","dot","dot"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div id="htmlwidget-aaa3ab5fbecf7c126ac6" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aaa3ab5fbecf7c126ac6">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"type":["stem","stem","stem","stem","stem","stem"],"status":["uptodate","outdated","outdated","outdated","outdated","outdated"],"seconds":[0.002,0.008,0.006,0,1.402,0.048],"bytes":[220,84452,72057,166,152222,1000],"branches":[null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x"],"font.size":[20,20,20,20,20,20],"level":[1,3,3,1,2,3],"color":["#354823","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_x","example_data","example_file_x"],"to":["example_diagnostics_x","example_summary_x","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem"],"color":["#354823","#78B7C5","#899DA4"],"shape":["dot","dot","dot"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ✔ skip target example_data</span>
 <span class="co">#&gt; ● run target example_file_x</span>
 <span class="co">#&gt; ● run target example_mcmc_x</span>
 <span class="co">#&gt; Compiling Stan program...</span>
-<span class="co">#&gt; Running MCMC with 4 sequential chains...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.9 seconds.</span>
 <span class="co">#&gt; ● run target example_diagnostics_x</span>
 <span class="co">#&gt; ● run target example_summary_x</span>
 <span class="co">#&gt; ● run target example_draws_x</span>
@@ -240,9 +219,7 @@ model {
     <span class="va">example</span>,
     <span class="st">"x.stan"</span>,
     <span class="fu"><a href="../reference/tar_stan_example_data.html">tar_stan_example_data</a></span><span class="op">(</span><span class="op">)</span>,
-    refresh <span class="op">=</span> <span class="fl">0</span>,
-    init <span class="op">=</span> <span class="fl">1</span>,
-    show_messages <span class="op">=</span> <span class="cn">FALSE</span>
+    log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>,
   <span class="fu"><a href="../reference/tar_stan_summary.html">tar_stan_summary</a></span><span class="op">(</span>
     <span class="va">custom_summary</span>,
@@ -253,25 +230,26 @@ model {
 <p>In the graph, our new <code>custom_summary</code> target should be connected to the upstream <code>example</code> target, and only <code>custom_summary</code> should be out of date.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-bdab17ed701f6457c8e0" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bdab17ed701f6457c8e0">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","custom_summary"],"type":["stem","stem","stem","stem","stem","stem","stem"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","outdated"],"seconds":[0.001,0.008,0.007,0.001,15.224,0.05,null],"bytes":[220,84378,72076,168,151760,1000,null],"branches":[null,null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","custom_summary"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","custom_summary"],"font.size":[20,20,20,20,20,20,20],"level":[1,3,3,1,2,3,3],"color":["#354823","#354823","#354823","#354823","#354823","#354823","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_x","example_mcmc_x","example_data","example_file_x"],"to":["example_diagnostics_x","example_summary_x","custom_summary","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem"],"color":["#354823","#78B7C5","#899DA4"],"shape":["dot","dot","dot"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>In the next <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code>, we skip the expensive MCMC and just run the custom summary.</p>
+<div id="htmlwidget-e22874d0f7e114739338" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e22874d0f7e114739338">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","custom_summary"],"type":["stem","stem","stem","stem","stem","stem","stem"],"status":["uptodate","outdated","outdated","uptodate","outdated","outdated","outdated"],"seconds":[0.002,0.009,0.006,0.001,15.063,0.049,null],"bytes":[220,84452,72057,168,152205,1000,null],"branches":[null,null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","custom_summary"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","custom_summary"],"font.size":[20,20,20,20,20,20,20],"level":[1,3,3,1,2,3,3],"color":["#354823","#78B7C5","#78B7C5","#354823","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_x","example_mcmc_x","example_data","example_file_x"],"to":["example_diagnostics_x","example_summary_x","custom_summary","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem"],"color":["#354823","#78B7C5","#899DA4"],"shape":["dot","dot","dot"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>In the next <code><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make()</a></code>, we skip the expensive MCMC and just run the custom summary.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ✔ skip target example_data</span>
 <span class="co">#&gt; ✔ skip target example_file_x</span>
-<span class="co">#&gt; ✔ skip target example_mcmc_x</span>
-<span class="co">#&gt; ✔ skip target example_diagnostics_x</span>
-<span class="co">#&gt; ✔ skip target example_summary_x</span>
+<span class="co">#&gt; ● run target example_mcmc_x</span>
+<span class="co">#&gt; Model executable is up to date!</span>
+<span class="co">#&gt; ● run target example_diagnostics_x</span>
+<span class="co">#&gt; ● run target example_summary_x</span>
 <span class="co">#&gt; ● run target custom_summary</span>
-<span class="co">#&gt; ✔ skip target example_draws_x</span>
+<span class="co">#&gt; ● run target example_draws_x</span>
 <span class="co">#&gt; ● end pipeline</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_read.html">tar_read</a></span><span class="op">(</span><span class="va">custom_summary</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   variable    q25    q75</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 lp__     -6.05  -5.42 </span>
-<span class="co">#&gt; 2 beta     -0.472  0.146</span></code></pre></div>
+<span class="co">#&gt; 1 lp__     -6.07  -5.42 </span>
+<span class="co">#&gt; 2 beta     -0.465  0.154</span></code></pre></div>
 <div id="multiple-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multiple-models" class="anchor"></a>Multiple models</h2>
@@ -285,9 +263,7 @@ model {
     <span class="va">example</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x.stan"</span>, <span class="st">"y.stan"</span><span class="op">)</span>, <span class="co"># another model</span>
     <span class="fu"><a href="../reference/tar_stan_example_data.html">tar_stan_example_data</a></span><span class="op">(</span><span class="op">)</span>,
-    refresh <span class="op">=</span> <span class="fl">0</span>,
-    init <span class="op">=</span> <span class="fl">1</span>,
-    show_messages <span class="op">=</span> <span class="cn">FALSE</span>
+    log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>,
   <span class="fu"><a href="../reference/tar_stan_summary.html">tar_stan_summary</a></span><span class="op">(</span>
     <span class="va">custom_summary</span>,
@@ -298,8 +274,8 @@ model {
 <p>In the graph below, notice how the <code>*_x</code> targets and <code>*_y</code> targets are both connected to <code>example_data</code> upstream.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-c6acfaeaad4eb252e2a3" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c6acfaeaad4eb252e2a3">{"x":{"nodes":{"name":["custom_summary","example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","example_draws_y","example_diagnostics_y","example_mcmc_y","example_file_y","example_summary_y"],"type":["stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","outdated","outdated","outdated","outdated","outdated"],"seconds":[0.029,0.001,0.008,0.007,0.001,15.224,0.05,null,null,null,null,null],"bytes":[504,220,84378,72076,168,151760,1000,null,null,null,null,null],"branches":[null,null,null,null,null,null,null,null,null,null,null,null],"id":["custom_summary","example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","example_draws_y","example_diagnostics_y","example_mcmc_y","example_file_y","example_summary_y"],"label":["custom_summary","example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","example_draws_y","example_diagnostics_y","example_mcmc_y","example_file_y","example_summary_y"],"font.size":[20,20,20,20,20,20,20,20,20,20,20,20],"level":[3,1,3,3,1,2,3,3,3,2,1,3],"color":["#354823","#354823","#354823","#354823","#354823","#354823","#354823","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_y","example_mcmc_y","example_mcmc_x","example_mcmc_x","example_data","example_file_x","example_mcmc_y","example_data","example_file_y"],"to":["example_diagnostics_x","example_summary_x","example_diagnostics_y","example_summary_y","custom_summary","example_draws_x","example_mcmc_x","example_mcmc_x","example_draws_y","example_mcmc_y","example_mcmc_y"],"arrows":["to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem"],"color":["#354823","#78B7C5","#899DA4"],"shape":["dot","dot","dot"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-309ddc6117d34a294595" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-309ddc6117d34a294595">{"x":{"nodes":{"name":["custom_summary","example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","example_draws_y","example_diagnostics_y","example_mcmc_y","example_file_y","example_summary_y"],"type":["stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem","stem"],"status":["outdated","uptodate","outdated","outdated","uptodate","outdated","outdated","outdated","outdated","outdated","outdated","outdated"],"seconds":[0.006,0.002,0.008,0.006,0.001,1.552,0.049,null,null,null,null,null],"bytes":[504,220,84452,72057,168,152224,1000,null,null,null,null,null],"branches":[null,null,null,null,null,null,null,null,null,null,null,null],"id":["custom_summary","example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","example_draws_y","example_diagnostics_y","example_mcmc_y","example_file_y","example_summary_y"],"label":["custom_summary","example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","example_draws_y","example_diagnostics_y","example_mcmc_y","example_file_y","example_summary_y"],"font.size":[20,20,20,20,20,20,20,20,20,20,20,20],"level":[3,1,3,3,1,2,3,3,3,2,1,3],"color":["#78B7C5","#354823","#78B7C5","#78B7C5","#354823","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot","dot"]},"edges":{"from":["example_mcmc_x","example_mcmc_x","example_mcmc_y","example_mcmc_y","example_mcmc_x","example_mcmc_x","example_data","example_file_x","example_mcmc_y","example_data","example_file_y"],"to":["example_diagnostics_x","example_summary_x","example_diagnostics_y","example_summary_y","custom_summary","example_draws_x","example_mcmc_x","example_mcmc_x","example_draws_y","example_mcmc_y","example_mcmc_y"],"arrows":["to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Outdated","Up to date","Stem"],"color":["#78B7C5","#354823","#899DA4"],"shape":["dot","dot","dot"],"font.size":[20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="generated-quantities" class="section level2">
 <h2 class="hasAnchor">
@@ -331,9 +307,7 @@ generated quantities {
     <span class="va">example</span>,
     <span class="st">"x.stan"</span>,
     <span class="fu"><a href="../reference/tar_stan_example_data.html">tar_stan_example_data</a></span><span class="op">(</span><span class="op">)</span>,
-    refresh <span class="op">=</span> <span class="fl">0</span>,
-    init <span class="op">=</span> <span class="fl">1</span>,
-    show_messages <span class="op">=</span> <span class="cn">FALSE</span>
+    log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>,
   <span class="fu"><a href="../reference/tar_stan_gq_rep_summary.html">tar_stan_gq_rep_summary</a></span><span class="op">(</span>
     <span class="va">postpred</span>,
@@ -342,14 +316,15 @@ generated quantities {
     data <span class="op">=</span> <span class="fu"><a href="../reference/tar_stan_example_data.html">tar_stan_example_data</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># multiple simulated datasets</span>
     batches <span class="op">=</span> <span class="fl">2</span>, <span class="co"># 2 dynamic branches</span>
     reps <span class="op">=</span> <span class="fl">5</span>, <span class="co"># 5 replications per branch</span>
-    quiet <span class="op">=</span> <span class="cn">TRUE</span>
+    quiet <span class="op">=</span> <span class="cn">TRUE</span>,
+    log <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>Since we have defined many objects in the pipeline, it is extra important to check the graph to be sure everything is connected.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html">tar_visnetwork</a></span><span class="op">(</span>targets_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-2728772b13e47a97cf99" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2728772b13e47a97cf99">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","postpred_data","postpred_file_gen","postpred","postpred_batch","postpred_gen"],"type":["stem","stem","stem","stem","stem","stem","pattern","stem","stem","stem","pattern"],"status":["uptodate","uptodate","uptodate","uptodate","uptodate","uptodate","outdated","outdated","outdated","outdated","outdated"],"seconds":[0.001,0.008,0.007,0.001,15.224,0.05,null,null,null,null,null],"bytes":[220,84378,72076,168,151760,1000,null,null,null,null,null],"branches":[null,null,null,null,null,null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","postpred_data","postpred_file_gen","postpred","postpred_batch","postpred_gen"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","postpred_data","postpred_file_gen","postpred","postpred_batch","postpred_gen"],"font.size":[20,20,20,20,20,20,20,20,20,20,20],"level":[1,3,3,1,2,3,2,1,4,1,3],"color":["#354823","#354823","#354823","#354823","#354823","#354823","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot","square","dot","dot","dot","square"]},"edges":{"from":["postpred_batch","example_mcmc_x","postpred_data","postpred_file_gen","example_mcmc_x","example_mcmc_x","postpred_gen","example_mcmc_x","example_data","example_file_x"],"to":["postpred_data","postpred_gen","postpred_gen","postpred_gen","example_diagnostics_x","example_summary_x","postpred","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem","Pattern"],"color":["#354823","#78B7C5","#899DA4","#899DA4"],"shape":["dot","dot","dot","square"],"font.size":[20,20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>Then, we run the computation. The original MCMC is already up to date, so we only run the targets relevant to the generated quantities.</p>
+<div id="htmlwidget-761f2af8356ca4905e37" style="width:700px;height:432.632880098888px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-761f2af8356ca4905e37">{"x":{"nodes":{"name":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","postpred_data","postpred_file_gen","postpred","postpred_batch","postpred_gen"],"type":["stem","stem","stem","stem","stem","stem","pattern","stem","stem","stem","pattern"],"status":["uptodate","outdated","outdated","uptodate","outdated","outdated","outdated","outdated","outdated","outdated","outdated"],"seconds":[0.002,0.008,0.006,0.001,1.552,0.049,null,null,null,null,null],"bytes":[220,84452,72057,168,152224,1000,null,null,null,null,null],"branches":[null,null,null,null,null,null,null,null,null,null,null],"id":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","postpred_data","postpred_file_gen","postpred","postpred_batch","postpred_gen"],"label":["example_data","example_diagnostics_x","example_draws_x","example_file_x","example_mcmc_x","example_summary_x","postpred_data","postpred_file_gen","postpred","postpred_batch","postpred_gen"],"font.size":[20,20,20,20,20,20,20,20,20,20,20],"level":[1,3,3,1,2,3,2,1,4,1,3],"color":["#354823","#78B7C5","#78B7C5","#354823","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5","#78B7C5"],"shape":["dot","dot","dot","dot","dot","dot","square","dot","dot","dot","square"]},"edges":{"from":["postpred_batch","example_mcmc_x","postpred_data","postpred_file_gen","example_mcmc_x","example_mcmc_x","postpred_gen","example_mcmc_x","example_data","example_file_x"],"to":["postpred_data","postpred_gen","postpred_gen","postpred_gen","example_diagnostics_x","example_summary_x","postpred","example_draws_x","example_mcmc_x","example_mcmc_x"],"arrows":["to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Outdated","Stem","Pattern"],"color":["#354823","#78B7C5","#899DA4","#899DA4"],"shape":["dot","dot","dot","square"],"font.size":[20,20,20,20]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script><p>Then, we run the computation. The original MCMC is already up to date, so we only run the targets relevant to the generated quantities.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wlandau.github.io/targets/reference/tar_make.html">tar_make</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; ● run target postpred_batch</span>
@@ -359,114 +334,15 @@ generated quantities {
 <span class="co">#&gt; ✔ skip target example_file_x</span>
 <span class="co">#&gt; ● run branch postpred_data_f1c15717</span>
 <span class="co">#&gt; ● run branch postpred_data_e945e52d</span>
-<span class="co">#&gt; ✔ skip target example_mcmc_x</span>
+<span class="co">#&gt; ● run target example_mcmc_x</span>
+<span class="co">#&gt; Model executable is up to date!</span>
 <span class="co">#&gt; ● run branch postpred_gen_0a30dca5</span>
 <span class="co">#&gt; Model executable is up to date!</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.5 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.6 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.6 seconds.</span>
 <span class="co">#&gt; ● run branch postpred_gen_6a425504</span>
 <span class="co">#&gt; Model executable is up to date!</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.4 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.6 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.6 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
-<span class="co">#&gt; Running standalone generated quantities after 4 MCMC chains, 1 chain at a time ...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Chain 1 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 2 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 3 finished in 0.0 seconds.</span>
-<span class="co">#&gt; Chain 4 finished in 0.0 seconds.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; All 4 chains finished successfully.</span>
-<span class="co">#&gt; Mean chain execution time: 0.0 seconds.</span>
-<span class="co">#&gt; Total execution time: 0.7 seconds.</span>
-<span class="co">#&gt; ✔ skip target example_diagnostics_x</span>
-<span class="co">#&gt; ✔ skip target example_summary_x</span>
-<span class="co">#&gt; ✔ skip target example_draws_x</span>
+<span class="co">#&gt; ● run target example_diagnostics_x</span>
+<span class="co">#&gt; ● run target example_summary_x</span>
+<span class="co">#&gt; ● run target example_draws_x</span>
 <span class="co">#&gt; ● run target postpred</span>
 <span class="co">#&gt; ● end pipeline</span></code></pre></div>
 <p>Finally, we read the summaries of posterior predictive samples.</p>
@@ -475,16 +351,16 @@ generated quantities {
 <span class="co">#&gt; # A tibble: 100 x 13</span>
 <span class="co">#&gt;    variable     mean   median    sd   mad    q5   q95  rhat ess_bulk ess_tail</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 y_rep[1]  0.139    0.157   1.10  1.11  -1.64  1.93  1.00    3396.    3852.</span>
-<span class="co">#&gt;  2 y_rep[2]  0.124    0.140   1.05  1.03  -1.58  1.86  1.00    3332.    3596.</span>
-<span class="co">#&gt;  3 y_rep[3]  0.0980   0.124   1.04  1.03  -1.61  1.81  1.00    3685.    3521.</span>
-<span class="co">#&gt;  4 y_rep[4]  0.0456   0.0432  1.01  1.00  -1.62  1.73  1.00    3698.    3801.</span>
-<span class="co">#&gt;  5 y_rep[5] -0.00506 -0.00655 1.00  1.02  -1.63  1.62  1.00    4338.    3612.</span>
-<span class="co">#&gt;  6 y_rep[6] -0.0187  -0.0114  0.981 1.01  -1.60  1.53  1.00    4257.    4056.</span>
-<span class="co">#&gt;  7 y_rep[7] -0.0438  -0.0377  0.992 0.996 -1.67  1.60  1.00    3778.    3697.</span>
-<span class="co">#&gt;  8 y_rep[8] -0.0959  -0.0879  1.03  1.02  -1.80  1.57  1.00    3391.    3832.</span>
-<span class="co">#&gt;  9 y_rep[9] -0.0954  -0.109   1.08  1.06  -1.86  1.71  1.00    3267.    3969.</span>
-<span class="co">#&gt; 10 y_rep[1… -0.170   -0.183   1.10  1.12  -1.94  1.64  1.00    3496.    3758.</span>
+<span class="co">#&gt;  1 y_rep[1]  0.139    0.164   1.10  1.08  -1.69  1.93  1.00    3227.    3741.</span>
+<span class="co">#&gt;  2 y_rep[2]  0.123    0.119   1.05  1.04  -1.59  1.89  1.00    3182.    3929.</span>
+<span class="co">#&gt;  3 y_rep[3]  0.0979   0.112   1.04  1.03  -1.58  1.78  1.00    3667.    3810.</span>
+<span class="co">#&gt;  4 y_rep[4]  0.0455   0.0525  1.02  1.02  -1.63  1.72  1.00    3775.    3932.</span>
+<span class="co">#&gt;  5 y_rep[5] -0.00508 -0.00749 1.00  1.02  -1.64  1.63  1.00    4266.    3665.</span>
+<span class="co">#&gt;  6 y_rep[6] -0.0186  -0.0153  0.981 1.02  -1.60  1.54  1.00    4243.    4055.</span>
+<span class="co">#&gt;  7 y_rep[7] -0.0438  -0.0377  0.996 0.981 -1.70  1.59  1.00    3814.    3891.</span>
+<span class="co">#&gt;  8 y_rep[8] -0.0958  -0.105   1.04  1.03  -1.86  1.66  1.00    3534.    3799.</span>
+<span class="co">#&gt;  9 y_rep[9] -0.0952  -0.0987  1.08  1.05  -1.90  1.74  1.00    3226.    3699.</span>
+<span class="co">#&gt; 10 y_rep[1… -0.170   -0.170   1.12  1.14  -2.00  1.67  1.00    3389.    3919.</span>
 <span class="co">#&gt; # … with 90 more rows, and 3 more variables: .rep &lt;chr&gt;, .file &lt;chr&gt;,</span>
 <span class="co">#&gt; #   .name &lt;chr&gt;</span></code></pre></div>
 </div>
