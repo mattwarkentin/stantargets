@@ -102,6 +102,20 @@
 </h1></div>
 
 <p>The <code>stantargets</code> R package is an extension to <a href="https://github.com/wlandau/targets"><code>targets</code></a> and <a href="https://github.com/stan-dev/cmdstanr"><code>cmdstanr</code></a> for Bayesian data analysis. <code>stantargets</code> makes it super easy to set up useful scalable Stan pipelines that automatically parallelize the computation and skip expensive steps when the results are already up to date. Minimal custom code is required, and there is no need to manually configure branching, so usage is much easier than <a href="https://github.com/wlandau/targets"><code>targets</code></a> alone. <code>stantargets</code> can access all of <a href="https://github.com/stan-dev/cmdstanr"><code>cmdstanr</code></a>’s major algorithms (MCMC, variational Bayes, and optimization) and it supports both single-fit workflows and multi-rep simulation studies.</p>
+<div id="prerequisites" class="section level2">
+<h2 class="hasAnchor">
+<a href="#prerequisites" class="anchor"></a>Prerequisites</h2>
+<ol>
+<li>The <a href="https://wlandau.github.io/targets/#prerequisites">prerequisites of the <code>targets</code> R package</a>.</li>
+<li>Basic familiarity with <a href="https://wlandau.github.io/targets/"><code>targets</code></a>: watch minutes 6 through 40 of <a href="https://youtu.be/Gqn7Xn4d5NI">this video</a>, then read <a href="https://wlandau.github.io/targets-manual/walkthrough.html">this chapter</a> of the <a href="https://wlandau.github.io/targets-manual/">user manual</a>.</li>
+<li>Familiarity with Bayesian Statistics and <a href="https://mc-stan.org/">Stan</a>. Prior knowledge of <a href="https://mc-stan.org/cmdstanr/"><code>cmdstanr</code></a> helps.</li>
+</ol>
+</div>
+<div id="how-to-get-started" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-to-get-started" class="anchor"></a>How to get started</h2>
+<p>Read the <code>stantargets</code> tutorial vignettes <a href="https://wlandau.github.io/stantargets/articles/mcmc.html">here</a> and <a href="https://wlandau.github.io/stantargets/articles/mcmc_rep.html">here</a>, then use <a href="https://wlandau.github.io/stantargets/" class="uri">https://wlandau.github.io/stantargets/</a> as a reference while constructing your own worklows.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -112,10 +126,26 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cmdstanr</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/install_cmdstan.html">install_cmdstan</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="documentation" class="section level2">
+<div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>The <code>stantargets</code> website at <a href="https://wlandau.github.io/stantargets/" class="uri">https://wlandau.github.io/stantargets/</a> has function documentation and vignettes. Prior familiarity with <a href="https://github.com/wlandau/targets"><code>targets</code></a> and <a href="https://github.com/stan-dev/cmdstanr"><code>cmdstanr</code></a> is highly recommended, and you can learn more at <a href="https://wlandau.github.io/targets" class="uri">https://wlandau.github.io/targets</a> and <a href="https://mc-stan.org/cmdstanr/" class="uri">https://mc-stan.org/cmdstanr/</a>, respectively.</p>
+<a href="#usage" class="anchor"></a>Usage</h2>
+<p>First, write a <a href="https://wlandau.github.io/targets-manual/walkthrough.html"><code>_targets.R</code> file</a> that loads your packages, defines a function to generate <a href="https://mc-stan.org/">Stan</a> data, and lists a pipeline of targets. The target list can call target factories like <a href="https://wlandau.github.io/stantargets/reference/tar_stan_mcmc.html"><code>tar_stan_mcmc()</code></a> as well as ordinary targets with <a href="https://wlandau.github.io/targets/reference/tar_target.html"><code>tar_target()</code></a>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># _targets.R</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wlandau.github.io/targets/">targets</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wlandau.github.io/stantargets/">stantargets</a></span><span class="op">)</span>
+
+<span class="va">generate_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">true_beta</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, to <span class="op">=</span> <span class="fl">1</span>, length.out <span class="op">=</span> <span class="va">n</span><span class="op">)</span>
+  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">x</span> <span class="op">*</span> <span class="va">true_beta</span>, <span class="fl">1</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, true_beta <span class="op">=</span> <span class="va">true_beta</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  <span class="fu"><a href="reference/tar_stan_mcmc.html">tar_stan_mcmc</a></span><span class="op">(</span><span class="va">example</span>, <span class="st">"x.stan"</span>, <span class="fu"><a href="reference/tar_stan_example_data.html">tar_stan_example_data</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<p>Run <a href="https://wlandau.github.io/targets/reference/tar_visnetwork.html"><code>tar_visnetwork()</code></a> to check <code>_targets.R</code> for correctness, then call <a href="https://wlandau.github.io/targets/reference/tar_make.html"><code>tar_make()</code></a> to run the pipeline. Access the results using <a href="https://wlandau.github.io/targets/reference/tar_read.html"><code>tar_read()</code></a>, e.g. <code>tar_read(tar_read(example_summary_x)</code>. Visit <a href="https://wlandau.github.io/stantargets/articles/mcmc.html">this vignette</a> to read more about this example.</p>
 </div>
 <div id="participation" class="section level2">
 <h2 class="hasAnchor">
@@ -125,17 +155,15 @@
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"stantargets"</span><span class="op">)</span>
 <span class="co">#&gt; Warning in citation("stantargets"): no date field in DESCRIPTION file of package</span>
 <span class="co">#&gt; 'stantargets'</span>
-<span class="co">#&gt; Warning in citation("stantargets"): could not determine year for 'stantargets'</span>
-<span class="co">#&gt; from package DESCRIPTION file</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'stantargets' in publications use:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   William Michael Landau (NA). stantargets: Targets for Stan Workflows.</span>
-<span class="co">#&gt;   https://wlandau.github.io/stantargets/,</span>
+<span class="co">#&gt;   William Michael Landau (2021). stantargets: Targets for Stan</span>
+<span class="co">#&gt;   Workflows. https://wlandau.github.io/stantargets/,</span>
 <span class="co">#&gt;   https://github.com/wlandau/stantargets.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
@@ -143,7 +171,9 @@
 <span class="co">#&gt;   @Manual{,</span>
 <span class="co">#&gt;     title = {stantargets: Targets for Stan Workflows},</span>
 <span class="co">#&gt;     author = {William Michael Landau},</span>
-<span class="co">#&gt;     note = {https://wlandau.github.io/stantargets/, https://github.com/wlandau/stantargets},</span>
+<span class="co">#&gt;     year = {2021},</span>
+<span class="co">#&gt;     note = {https://wlandau.github.io/stantargets/,</span>
+<span class="co">#&gt; https://github.com/wlandau/stantargets},</span>
 <span class="co">#&gt;   }</span></code></pre></div>
 </div>
 </div>
