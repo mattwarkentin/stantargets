@@ -186,7 +186,7 @@ if the number of MCMC runs is large.</p>
   validate_csv <span class='op'>=</span> <span class='cn'>TRUE</span>,
   show_messages <span class='op'>=</span> <span class='cn'>TRUE</span>,
   inc_warmup <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  copy_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
+  data_copy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   tidy_eval <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"tidy_eval"</span><span class='op'>)</span>,
   packages <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"packages"</span><span class='op'>)</span>,
   library <span class='op'>=</span> <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/targets/reference/tar_option_get.html'>tar_option_get</a></span><span class='op'>(</span><span class='st'>"library"</span><span class='op'>)</span>,
@@ -511,7 +511,7 @@ fit object can be used to display all the silenced messages.</p></td>
 <code>FALSE</code>. Ignored except when used with <a href='https://mc-stan.org/cmdstanr/reference/CmdStanMCMC.html'>CmdStanMCMC</a> objects.</p></td>
     </tr>
     <tr>
-      <th>copy_data</th>
+      <th>data_copy</th>
       <td><p>Character vector of names of scalars in <code>data</code>.
 These values will be inserted as columns in the output data frame
 for each rep. Useful for simulation studies where you want to

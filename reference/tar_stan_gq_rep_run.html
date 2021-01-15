@@ -159,7 +159,7 @@
   <span class='va'>sig_figs</span>,
   <span class='va'>parallel_chains</span>,
   <span class='va'>threads_per_chain</span>,
-  <span class='va'>copy_data</span>,
+  <span class='va'>data_copy</span>,
   <span class='va'>variables</span>,
   <span class='va'>summaries</span>,
   <span class='va'>summary_args</span>
@@ -307,7 +307,7 @@ run in parallel. The actual number of CPU cores used use is
 the Stan case study <a href='https://mc-stan.org/users/documentation/case-studies/reduce_sum_tutorial.html'>Reduce Sum: A Minimal Example</a>.</p></td>
     </tr>
     <tr>
-      <th>copy_data</th>
+      <th>data_copy</th>
       <td><p>Character vector of names of scalars in <code>data</code>.
 These values will be inserted as columns in the output data frame
 for each rep. Useful for simulation studies where you want to

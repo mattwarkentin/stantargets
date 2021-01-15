@@ -162,7 +162,7 @@ save only the summaries from each run.</p>
   sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
   parallel_chains <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"mc.cores"</span>, <span class='fl'>1</span><span class='op'>)</span>,
   threads_per_chain <span class='op'>=</span> <span class='cn'>NULL</span>,
-  copy_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
+  data_copy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   summaries <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   summary_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -329,7 +329,7 @@ run in parallel. The actual number of CPU cores used use is
 the Stan case study <a href='https://mc-stan.org/users/documentation/case-studies/reduce_sum_tutorial.html'>Reduce Sum: A Minimal Example</a>.</p></td>
     </tr>
     <tr>
-      <th>copy_data</th>
+      <th>data_copy</th>
       <td><p>Character vector of names of scalars in <code>data</code>.
 These values will be inserted as columns in the output data frame
 for each rep. Useful for simulation studies where you want to

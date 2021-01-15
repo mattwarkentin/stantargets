@@ -184,7 +184,7 @@ Users should not invoke directly.</p>
   sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
   validate_csv <span class='op'>=</span> <span class='cn'>TRUE</span>,
   show_messages <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  copy_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
+  data_copy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   inc_warmup <span class='op'>=</span> <span class='cn'>FALSE</span>,
   summaries <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -513,7 +513,7 @@ If the messages are silenced then the <code>$output()</code> method of the resul
 fit object can be used to display all the silenced messages.</p></td>
     </tr>
     <tr>
-      <th>copy_data</th>
+      <th>data_copy</th>
       <td><p>Character vector of names of scalars in <code>data</code>.
 These values will be inserted as columns in the output data frame
 for each rep. Useful for simulation studies where you want to

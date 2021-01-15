@@ -171,7 +171,7 @@
   eval_elbo <span class='op'>=</span> <span class='cn'>NULL</span>,
   output_samples <span class='op'>=</span> <span class='cn'>NULL</span>,
   sig_figs <span class='op'>=</span> <span class='cn'>NULL</span>,
-  copy_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
+  data_copy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>,
   variables <span class='op'>=</span> <span class='cn'>NULL</span>,
   summaries <span class='op'>=</span> <span class='cn'>NULL</span>,
   summary_args <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -403,7 +403,7 @@ Increasing this value will result in larger output CSV files and thus an
 increased usage of disk space.</p></td>
     </tr>
     <tr>
-      <th>copy_data</th>
+      <th>data_copy</th>
       <td><p>Character vector of names of scalars in <code>data</code>.
 These values will be inserted as columns in the output data frame
 for each rep. Useful for simulation studies where you want to
