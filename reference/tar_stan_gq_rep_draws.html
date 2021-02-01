@@ -451,7 +451,7 @@ rules that decide whether the target is up to date.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>tar_stan_gq_rep_draws(name = x, stan_files = "y.stan")</code>
-returns a list of <code><a href='https://docs.ropensci.org/targets/reference/tar_target.html'>targets::tar_target()</a></code> objects:</p><ul>
+returns a list of target objects:</p><ul>
 <li><p><code>x_file_y</code>: reproducibly track the Stan model file.</p></li>
 <li><p><code>x_lines_y</code>: contents of the Stan model file.
 Omitted if <code>compile = "original"</code>.</p></li>
@@ -462,6 +462,11 @@ a single data frame with columns to distinguish among the models.
 Suppressed if <code>combine</code> is <code>FALSE</code>.</p></li>
 </ul>
 
+<p>Target objects represent skippable steps of the analysis pipeline
+as described at <a href='https://books.ropensci.org/targets/'>https://books.ropensci.org/targets/</a>.
+Please see the design specification at
+<a href='https://books.ropensci.org/targets-design/'>https://books.ropensci.org/targets-design/</a>
+to learn about the structure and composition of target objects.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Most of the arguments are passed to the <code>$compile()</code>
